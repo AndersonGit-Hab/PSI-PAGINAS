@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Ana Carvalho — Psicóloga Clínica</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sage: #8a9e8c;
+    --sage-light: #b8c8b9;
+    --sage-pale: #eef2ee;
+    --cream: #f9f6f1;
+    --warm-dark: #2c2a27;
+    --warm-mid: #5c5650;
+    --terracotta: #c4856a;
+    --gold: #b8975a;
+    --white: #ffffff;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--warm-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem 5%;
+    background: rgba(249,246,241,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(138,158,140,0.2);
+    animation: fadeDown .8s ease both;
+  }
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-12px) } to { opacity:1; transform:translateY(0) } }
+
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    letter-spacing: .06em;
+    color: var(--warm-dark);
+    text-decoration: none;
+  }
+  .logo span { color: var(--sage); }
+
+  nav ul { list-style: none; display: flex; gap: 2.4rem; }
+  nav ul a {
+    font-size: .82rem; font-weight: 400; letter-spacing: .08em;
+    color: var(--warm-mid); text-decoration: none; text-transform: uppercase;
+    transition: color .3s;
+  }
+  nav ul a:hover { color: var(--sage); }
+
+  .nav-cta {
+    font-size: .8rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--white); background: var(--sage);
+    padding: .55rem 1.4rem; border-radius: 50px; text-decoration: none;
+    transition: background .3s, transform .2s;
+  }
+  .nav-cta:hover { background: var(--warm-dark); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+  }
+
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 5% 6rem 8%;
+    animation: fadeLeft .9s .2s ease both;
+  }
+  @keyframes fadeLeft { from { opacity:0; transform:translateX(-24px) } to { opacity:1; transform:translateX(0) } }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-size: .75rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--sage); margin-bottom: 2rem;
+  }
+  .hero-tag::before {
+    content: ''; width: 28px; height: 1px; background: var(--sage);
+  }
+
+  .hero-left h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    font-weight: 300; line-height: 1.12;
+    color: var(--warm-dark); margin-bottom: 1.6rem;
+  }
+  .hero-left h1 em { font-style: italic; color: var(--sage); }
+
+  .hero-left p {
+    font-size: 1rem; line-height: 1.75;
+    color: var(--warm-mid); max-width: 440px; margin-bottom: 2.8rem;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    font-size: .84rem; font-weight: 500; letter-spacing: .06em;
+    color: var(--white); background: var(--warm-dark);
+    padding: .9rem 2rem; border-radius: 50px; text-decoration: none;
+    transition: background .3s, transform .2s, box-shadow .3s;
+  }
+  .btn-primary:hover {
+    background: var(--sage);
+    box-shadow: 0 8px 28px rgba(138,158,140,.35);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    font-size: .84rem; font-weight: 400; letter-spacing: .06em;
+    color: var(--warm-mid); text-decoration: none;
+    display: flex; align-items: center; gap: .5rem;
+    transition: color .3s;
+  }
+  .btn-ghost:hover { color: var(--sage); }
+  .btn-ghost svg { transition: transform .3s; }
+  .btn-ghost:hover svg { transform: translateX(4px); }
+
+  /* hero right — image */
+  .hero-right {
+    position: relative; overflow: hidden;
+    animation: fadeRight .9s .3s ease both;
+  }
+  @keyframes fadeRight { from { opacity:0; transform:translateX(24px) } to { opacity:1; transform:translateX(0) } }
+
+  .hero-right img {
+    width: 100%; height: 100%; object-fit: cover;
+    display: block;
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(138,158,140,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    position: absolute; bottom: 2.5rem; left: -1.5rem;
+    background: var(--white);
+    border-radius: 14px; padding: 1.2rem 1.6rem;
+    box-shadow: 0 12px 40px rgba(44,42,39,.12);
+    display: flex; align-items: center; gap: 1rem;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) }
+    50% { transform: translateY(-6px) }
+  }
+  .badge-icon {
+    width: 42px; height: 42px; border-radius: 10px;
+    background: var(--sage-pale); display: grid; place-items: center;
+    font-size: 1.2rem;
+  }
+  .badge-text strong { display: block; font-size: .9rem; color: var(--warm-dark); }
+  .badge-text span { font-size: .75rem; color: var(--warm-mid); }
+
+  .hero-stats {
+    position: absolute; top: 2.5rem; right: 2rem;
+    background: var(--warm-dark); color: var(--white);
+    border-radius: 12px; padding: 1rem 1.4rem;
+    box-shadow: 0 8px 30px rgba(44,42,39,.2);
+  }
+  .hero-stats strong { display: block; font-size: 1.5rem; font-family: 'Cormorant Garamond', serif; }
+  .hero-stats span { font-size: .73rem; color: var(--sage-light); letter-spacing: .05em; }
+
+  /* ── SECTION WRAPPER ── */
+  section { padding: 7rem 8%; }
+
+  .section-label {
+    font-size: .72rem; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--sage); display: flex; align-items: center; gap: .6rem;
+    margin-bottom: 1.2rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--sage-light); }
+
+  h2.section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 300; line-height: 1.2; color: var(--warm-dark);
+    margin-bottom: 1rem;
+  }
+
+  /* ── SOBRE ── */
+  .sobre {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+
+  .sobre-img-wrap {
+    position: relative;
+  }
+  .sobre-img-wrap img {
+    width: 100%; border-radius: 4px; display: block;
+    filter: saturate(.92);
+  }
+  .sobre-accent {
+    position: absolute; top: -1.5rem; left: -1.5rem;
+    width: 60%; height: 60%; border: 1.5px solid var(--sage-light);
+    border-radius: 4px; z-index: 0; pointer-events: none;
+  }
+  .sobre-img-wrap img { position: relative; z-index: 1; }
+
+  .sobre-content p {
+    font-size: .97rem; line-height: 1.85; color: var(--warm-mid);
+    margin-bottom: 1.4rem;
+  }
+
+  .credentials {
+    display: flex; flex-direction: column; gap: .8rem; margin-top: 2rem;
+  }
+  .cred-item {
+    display: flex; align-items: center; gap: .8rem;
+    font-size: .85rem; color: var(--warm-mid);
+  }
+  .cred-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sage); flex-shrink: 0;
+  }
+
+  /* ── ESPECIALIDADES ── */
+  .especialidades { background: var(--cream); }
+  .esp-intro { max-width: 520px; margin-bottom: 3.5rem; }
+  .esp-intro p { font-size: .97rem; line-height: 1.75; color: var(--warm-mid); }
+
+  .esp-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .esp-card {
+    background: var(--white); border-radius: 6px; padding: 2rem;
+    border: 1px solid transparent;
+    transition: border-color .3s, box-shadow .3s, transform .3s;
+    cursor: default;
+  }
+  .esp-card:hover {
+    border-color: var(--sage-light);
+    box-shadow: 0 8px 32px rgba(138,158,140,.15);
+    transform: translateY(-4px);
+  }
+  .esp-icon {
+    font-size: 1.6rem; margin-bottom: 1.2rem; display: block;
+  }
+  .esp-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; font-weight: 400; color: var(--warm-dark); margin-bottom: .7rem;
+  }
+  .esp-card p { font-size: .85rem; line-height: 1.7; color: var(--warm-mid); }
+
+  /* ── ABORDAGEM ── */
+  .abordagem {
+    background: var(--warm-dark); color: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .abordagem .section-label { color: var(--sage-light); }
+  .abordagem .section-label::after { background: var(--sage); }
+  .abordagem h2 { color: var(--white); }
+  .abordagem-text p {
+    font-size: .97rem; line-height: 1.85; color: rgba(255,255,255,.65);
+    margin-bottom: 1.2rem;
+  }
+
+  .steps { display: flex; flex-direction: column; gap: 2rem; }
+  .step { display: flex; gap: 1.4rem; align-items: flex-start; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 300;
+    color: var(--sage); line-height: 1; flex-shrink: 0; width: 50px;
+  }
+  .step-body h4 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-weight: 400; color: var(--white); margin-bottom: .4rem;
+  }
+  .step-body p { font-size: .85rem; line-height: 1.7; color: rgba(255,255,255,.55); }
+
+  /* ── DEPOIMENTOS ── */
+  .depoimentos { background: var(--sage-pale); }
+  .dep-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .dep-card {
+    background: var(--white); border-radius: 6px; padding: 2rem;
+    box-shadow: 0 2px 16px rgba(138,158,140,.08);
+  }
+  .stars { color: var(--gold); font-size: .9rem; margin-bottom: 1rem; letter-spacing: .1em; }
+  .dep-card p {
+    font-size: .9rem; line-height: 1.75; color: var(--warm-mid);
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+  .dep-author { display: flex; align-items: center; gap: .8rem; }
+  .dep-avatar {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: var(--sage-light); display: grid; place-items: center;
+    font-size: 1rem; color: var(--white); font-weight: 500; flex-shrink: 0;
+  }
+  .dep-author strong { display: block; font-size: .85rem; color: var(--warm-dark); }
+  .dep-author span { font-size: .75rem; color: var(--warm-mid); }
+
+  /* ── CONTATO ── */
+  .contato {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+  }
+
+  .contato-info { }
+  .contato-info p {
+    font-size: .97rem; line-height: 1.8; color: var(--warm-mid); margin-bottom: 2.5rem;
+  }
+
+  .info-items { display: flex; flex-direction: column; gap: 1.4rem; }
+  .info-item { display: flex; align-items: flex-start; gap: 1rem; }
+  .info-ic {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: var(--sage-pale); display: grid; place-items: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .info-text strong { display: block; font-size: .85rem; color: var(--warm-dark); margin-bottom: .2rem; }
+  .info-text span { font-size: .83rem; color: var(--warm-mid); }
+
+  .form-card {
+    background: var(--cream); border-radius: 8px; padding: 2.5rem;
+  }
+  .form-card h3 {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400;
+    color: var(--warm-dark); margin-bottom: 1.8rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+  .field { display: flex; flex-direction: column; gap: .4rem; margin-bottom: 1rem; }
+  .field:last-child { margin-bottom: 0; }
+  label { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--warm-mid); }
+  input, textarea, select {
+    font-family: 'DM Sans', sans-serif; font-size: .9rem;
+    padding: .75rem 1rem; border: 1px solid rgba(138,158,140,.3);
+    border-radius: 4px; background: var(--white);
+    color: var(--warm-dark); outline: none;
+    transition: border-color .3s;
+    width: 100%;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--sage); }
+  textarea { resize: vertical; min-height: 100px; }
+  .form-submit {
+    width: 100%; margin-top: 1.4rem;
+    font-size: .85rem; font-weight: 500; letter-spacing: .07em; text-transform: uppercase;
+    color: var(--white); background: var(--sage);
+    border: none; border-radius: 50px; padding: 1rem;
+    cursor: pointer; transition: background .3s, transform .2s;
+  }
+  .form-submit:hover { background: var(--warm-dark); transform: translateY(-1px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--warm-dark); color: rgba(255,255,255,.55);
+    text-align: center; padding: 2.5rem 5%;
+    font-size: .8rem; letter-spacing: .04em;
+  }
+  footer a { color: var(--sage-light); text-decoration: none; }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { height: 55vw; }
+    .hero-badge { left: 1rem; }
+    .sobre, .abordagem, .contato { grid-template-columns: 1fr; gap: 3rem; }
+    .esp-grid { grid-template-columns: 1fr 1fr; }
+    .dep-grid { grid-template-columns: 1fr; }
+    nav ul { display: none; }
+    .sobre-accent { display: none; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 5rem 6%; }
+    .hero-left { padding: 4rem 6%; }
+    .esp-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Ana <span>Carvalho</span></a>
+  <ul>
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#especialidades">Especialidades</a></li>
+    <li><a href="#abordagem">Abordagem</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="#contato" class="nav-cta">Agendar Consulta</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <span class="hero-tag">Psicologia Clínica · São Paulo</span>
+    <h1>Um espaço seguro para <em>se reconectar</em> com você mesmo</h1>
+    <p>Atendimento individual para adultos e adolescentes. Cuidado genuíno, escuta ativa e um processo terapêutico construído junto com você.</p>
+    <div class="hero-btns">
+      <a href="#contato" class="btn-primary">Agendar primeira sessão</a>
+      <a href="#sobre" class="btn-ghost">
+        Conheça meu trabalho
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&q=80" alt="Dra. Ana Carvalho">
+    <div class="hero-overlay"></div>
+    <div class="hero-badge">
+      <div class="badge-icon">🌿</div>
+      <div class="badge-text">
+        <strong>Ambiente Acolhedor</strong>
+        <span>Presencial & Online</span>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <strong>+400</strong>
+      <span>Pacientes atendidos</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-img-wrap reveal">
+    <div class="sobre-accent"></div>
+    <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&q=80" alt="Consultório">
+  </div>
+  <div class="sobre-content reveal">
+    <div class="section-label">Quem sou eu</div>
+    <h2 class="section-title">Dra. Ana Carvalho</h2>
+    <p>Sou psicóloga clínica com mais de 8 anos de experiência no atendimento de adultos e adolescentes. Acredito que a terapia é um espaço de autoconhecimento, não de julgamento.</p>
+    <p>Minha prática é fundamentada na escuta empática e em abordagens com comprovação científica, sempre respeitando o ritmo e a singularidade de cada pessoa.</p>
+    <div class="credentials">
+      <div class="cred-item"><div class="cred-dot"></div> Psicóloga — CRP 06/123456</div>
+      <div class="cred-item"><div class="cred-dot"></div> Especialista em Terapia Cognitivo-Comportamental (TCC)</div>
+      <div class="cred-item"><div class="cred-dot"></div> Pós-graduanda em Neuropsicologia — USP</div>
+      <div class="cred-item"><div class="cred-dot"></div> Formação em Mindfulness-Based Cognitive Therapy</div>
+    </div>
+  </div>
+</section>
+
+<!-- ESPECIALIDADES -->
+<section class="especialidades" id="especialidades">
+  <div class="esp-intro reveal">
+    <div class="section-label">Como posso ajudar</div>
+    <h2 class="section-title">Áreas de Atuação</h2>
+    <p>Cada pessoa traz uma história única. Trabalho com as questões que mais afetam o bem-estar e a qualidade de vida no dia a dia.</p>
+  </div>
+  <div class="esp-grid">
+    <div class="esp-card reveal">
+      <span class="esp-icon">🌊</span>
+      <h3>Ansiedade & Estresse</h3>
+      <p>Técnicas práticas e recursos terapêuticos para retomar o controle emocional e reduzir a tensão do cotidiano.</p>
+    </div>
+    <div class="esp-card reveal">
+      <span class="esp-icon">☁️</span>
+      <h3>Depressão & Humor</h3>
+      <p>Acompanhamento cuidadoso em momentos de tristeza profunda, perda de sentido e dificuldade de se motivar.</p>
+    </div>
+    <div class="esp-card reveal">
+      <span class="esp-icon">🔗</span>
+      <h3>Relacionamentos</h3>
+      <p>Apoio para padrões relacionais que se repetem, comunicação difícil e vínculos que geram sofrimento.</p>
+    </div>
+    <div class="esp-card reveal">
+      <span class="esp-icon">🧭</span>
+      <h3>Autoconhecimento</h3>
+      <p>Para quem busca entender melhor a si mesmo, seus valores e seu lugar no mundo — sem precisar estar em crise.</p>
+    </div>
+    <div class="esp-card reveal">
+      <span class="esp-icon">🏢</span>
+      <h3>Burnout & Trabalho</h3>
+      <p>Suporte especializado para esgotamento profissional, pressão por performance e equilíbrio vida-trabalho.</p>
+    </div>
+    <div class="esp-card reveal">
+      <span class="esp-icon">🌱</span>
+      <h3>Transições de Vida</h3>
+      <p>Acompanhamento em mudanças importantes: luto, divórcio, maternidade, carreira e novos começos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABORDAGEM -->
+<section class="abordagem" id="abordagem">
+  <div class="abordagem-text reveal">
+    <div class="section-label">Meu método</div>
+    <h2 class="section-title">Como funciona a terapia comigo</h2>
+    <p>Não acredito em fórmulas prontas. Cada processo terapêutico é construído de acordo com quem você é e o que você precisa neste momento.</p>
+    <p>Utilizo principalmente a Terapia Cognitivo-Comportamental, com integrações de Mindfulness e técnicas de regulação emocional, sempre de forma acolhedora e sem julgamentos.</p>
+  </div>
+  <div class="steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <div class="step-body">
+        <h4>Primeira sessão gratuita</h4>
+        <p>Uma conversa inicial para você me conhecer, entender como trabalho e ver se faz sentido para você — sem compromisso.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <div class="step-body">
+        <h4>Mapeamento personalizado</h4>
+        <p>Juntos identificamos o que te trouxe até aqui e o que você quer alcançar. Dali construímos o caminho.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <div class="step-body">
+        <h4>Sessões semanais</h4>
+        <p>50 minutos de presença total. Presencialmente em São Paulo (Pinheiros) ou online pelo Brasil.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <div class="step-body">
+        <h4>Evolução contínua</h4>
+        <p>Avaliamos regularmente o processo para garantir que o trabalho faz sentido e gera resultados reais.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section class="depoimentos" id="depoimentos">
+  <div class="reveal">
+    <div class="section-label">Quem passou por aqui</div>
+    <h2 class="section-title">O que dizem meus pacientes</h2>
+  </div>
+  <div class="dep-grid">
+    <div class="dep-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"A Ana tem uma forma de ouvir que faz a gente se sentir completamente seguro. Depois de 6 meses de terapia, eu me reconheço de novo."</p>
+      <div class="dep-author">
+        <div class="dep-avatar">M</div>
+        <div>
+          <strong>Mariana T.</strong>
+          <span>Paciente há 1 ano</span>
+        </div>
+      </div>
+    </div>
+    <div class="dep-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Cheguei no limite do esgotamento. A terapia com a Dra. Ana me deu ferramentas reais para retomar o controle da minha vida."</p>
+      <div class="dep-author">
+        <div class="dep-avatar">R</div>
+        <div>
+          <strong>Rafael S.</strong>
+          <span>Atendimento online</span>
+        </div>
+      </div>
+    </div>
+    <div class="dep-card reveal">
+      <div class="stars">★★★★★</div>
+      <p>"Nunca pensei que terapia fosse pra mim. A Ana me mostrou que autoconhecimento não tem a ver com fraqueza — muito pelo contrário."</p>
+      <div class="dep-author">
+        <div class="dep-avatar">C</div>
+        <div>
+          <strong>Camila R.</strong>
+          <span>Paciente há 8 meses</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="contato-info reveal">
+    <div class="section-label">Vamos conversar</div>
+    <h2 class="section-title">Dê o primeiro passo</h2>
+    <p>Se você chegou até aqui, alguma coisa te trouxe. Isso já é o começo. Entre em contato e vamos marcar uma primeira conversa — sem custo, sem compromisso.</p>
+    <div class="info-items">
+      <div class="info-item">
+        <div class="info-ic">📍</div>
+        <div class="info-text">
+          <strong>Localização</strong>
+          <span>Rua exemplo, 123 — Pinheiros, São Paulo/SP</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-ic">📱</div>
+        <div class="info-text">
+          <strong>WhatsApp</strong>
+          <span>(11) 99999-9999</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-ic">📧</div>
+        <div class="info-text">
+          <strong>E-mail</strong>
+          <span>contato@anacarvalho.psi.br</span>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-ic">🕐</div>
+        <div class="info-text">
+          <strong>Horários</strong>
+          <span>Segunda a Sábado · 8h às 20h</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-card reveal">
+    <h3>Agendar sessão</h3>
+    <div class="form-row">
+      <div class="field">
+        <label>Nome</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="field">
+        <label>Telefone</label>
+        <input type="text" placeholder="(11) 9xxxx-xxxx">
+      </div>
+    </div>
+    <div class="field">
+      <label>E-mail</label>
+      <input type="email" placeholder="seu@email.com">
+    </div>
+    <div class="field">
+      <label>Modalidade</label>
+      <select>
+        <option>Presencial — Pinheiros, SP</option>
+        <option>Online (videochamada)</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Como posso ajudar?</label>
+      <textarea placeholder="Conte um pouco sobre o que te trouxe até aqui..."></textarea>
+    </div>
+    <button class="form-submit">Enviar mensagem</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Dra. Ana Carvalho — CRP 06/123456 &nbsp;·&nbsp; <a href="#">Política de Privacidade</a> &nbsp;·&nbsp; Desenvolvido com cuidado</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
