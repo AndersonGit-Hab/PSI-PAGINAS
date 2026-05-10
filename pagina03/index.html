@@ -1,0 +1,745 @@
+import { useState, useEffect, useRef } from "react";
+
+/* ─── GOOGLE FONTS ─────────────────────────────────────────────────────────── */
+const FontLoader = () => (
+  <style>{`
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+    :root {
+      --sage: #7a9b88;
+      --sage-light: #a8c4b4;
+      --sage-dark: #4f6b5a;
+      --cream: #f5f0e8;
+      --cream-dark: #ece5d6;
+      --terra: #b87a5a;
+      --terra-light: #d4a48a;
+      --ink: #2a2520;
+      --ink-soft: #4a443e;
+      --muted: #8a837a;
+      --white: #fdfaf6;
+      --whatsapp: #25d366;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(245, 240, 232, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(42,37,32,0.08);
+    }
+
+    /* ── HERO PLACEHOLDER ── */
+    .photo-placeholder {
+      background: linear-gradient(145deg, var(--sage-light) 0%, var(--sage) 50%, var(--sage-dark) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 12px; color: white; text-align: center;
+    }
+
+    /* ── SPECIALTY CARDS ── */
+    .spec-card {
+      background: var(--white);
+      border: 1px solid transparent;
+      border-radius: 16px;
+      padding: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: default;
+    }
+    .spec-card:hover {
+      border-color: var(--sage-light);
+      box-shadow: 0 8px 32px rgba(122,155,136,0.15);
+      transform: translateY(-4px);
+    }
+
+    /* ── QUOTE CARDS ── */
+    .quote-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      position: relative;
+      border-top: 3px solid var(--sage);
+    }
+    .quote-mark {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem; line-height: 0.8;
+      color: var(--sage-light); opacity: 0.4;
+      position: absolute; top: 1rem; left: 1.5rem;
+      user-select: none;
+    }
+
+    /* ── STEPS ── */
+    .step-number {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: var(--sage);
+      color: white;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 2rem; right: 2rem;
+      z-index: 200;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--whatsapp);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      cursor: pointer; border: none;
+      animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1s both;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.5);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── CTA BUTTON ── */
+    .btn-wa {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--terra);
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1rem; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .btn-wa:hover {
+      background: #a36848;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(184,122,90,0.35);
+    }
+
+    /* ── BADGE / PILL ── */
+    .crp-badge {
+      display: inline-flex; align-items: center;
+      background: var(--sage-dark);
+      color: white; border-radius: 50px;
+      padding: 0.4rem 1.2rem;
+      font-size: 0.85rem; font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 300;
+      background: rgba(42,37,32,0.55);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      padding: 1.5rem;
+    }
+    .modal-box {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 560px; width: 100%;
+      max-height: 80vh; overflow-y: auto;
+      position: relative;
+    }
+
+    /* ── SECTION ── */
+    section { padding: 5rem 1.5rem; }
+
+    /* ── DIVIDER ── */
+    .section-eyebrow {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--sage-dark);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.75);
+    }
+    footer a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: white; }
+
+    /* ── TEXTURE overlay ── */
+    .texture {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='none'/%3E%3Ccircle cx='1' cy='1' r='0.6' fill='rgba(0,0,0,0.03)'/%3E%3C/svg%3E");
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 3.5rem 1.25rem; }
+      .wa-float { bottom: 1.5rem; right: 1.5rem; }
+    }
+  `}</style>
+);
+
+/* ─── WHATSAPP SVG ──────────────────────────────────────────────────────────── */
+const WhatsAppIcon = ({ size = 28, color = "white" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill={color} xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+);
+
+/* ─── INTERSECTION OBSERVER HOOK ────────────────────────────────────────────── */
+function useAnimateOnScroll() {
+  const ref = useRef(null);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); }),
+      { threshold: 0.12 }
+    );
+    const items = el.querySelectorAll(".fade-up");
+    items.forEach(i => observer.observe(i));
+    return () => observer.disconnect();
+  }, []);
+  return ref;
+}
+
+/* ─── CONSTANTS ─────────────────────────────────────────────────────────────── */
+const WA_LINK = "https://wa.me/5583999902803?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20conversa%20inicial.";
+const INSTAGRAM = "https://www.instagram.com/linderlandiopsi/";
+
+/* ─── MAIN COMPONENT ─────────────────────────────────────────────────────────── */
+export default function App() {
+  const [navScrolled, setNavScrolled] = useState(false);
+  const [mobileMenu, setMobileMenu] = useState(false);
+  const [lgpdModal, setLgpdModal] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setNavScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const hero = useAnimateOnScroll();
+  const specs = useAnimateOnScroll();
+  const about = useAnimateOnScroll();
+  const how = useAnimateOnScroll();
+  const quotes = useAnimateOnScroll();
+  const cta = useAnimateOnScroll();
+
+  return (
+    <>
+      <FontLoader />
+
+      {/* ── SEO META ── */}
+      <title>Psicólogo em Patos-PB — Linderlandio Vasconcelos | CRP 13/7689</title>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          NAV
+      ══════════════════════════════════════════════════════════════════════ */}
+      <nav className={navScrolled ? "scrolled" : ""}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", height: 68 }}>
+          {/* Logo */}
+          <a href="#hero" style={{ textDecoration: "none" }}>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.3rem", fontWeight: 500, color: "var(--ink)", letterSpacing: "0.01em" }}>
+              Linderlandio Vasconcelos
+            </span>
+          </a>
+
+          {/* Desktop Links */}
+          <div style={{ display: "flex", gap: "2rem", alignItems: "center" }} className="hidden-mobile">
+            {[["#especialidades", "Especialidades"], ["#sobre", "Sobre"], ["#como-funciona", "Como funciona"]].map(([href, label]) => (
+              <a key={href} href={href} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", color: "var(--ink-soft)", textDecoration: "none", transition: "color 0.2s" }}
+                onMouseEnter={e => e.target.style.color = "var(--sage-dark)"}
+                onMouseLeave={e => e.target.style.color = "var(--ink-soft)"}
+              >{label}</a>
+            ))}
+            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-wa" style={{ padding: "0.6rem 1.4rem", fontSize: "0.88rem" }}>
+              <WhatsAppIcon size={18} /> Agendar consulta
+            </a>
+          </div>
+
+          {/* Mobile Hamburger */}
+          <button onClick={() => setMobileMenu(!mobileMenu)} style={{ background: "none", border: "none", cursor: "pointer", display: "none" }} className="show-mobile">
+            <div style={{ width: 24, height: 2, background: "var(--ink)", marginBottom: 5, transition: "transform 0.2s", transform: mobileMenu ? "rotate(45deg) translate(5px,5px)" : "" }}/>
+            <div style={{ width: 24, height: 2, background: "var(--ink)", marginBottom: 5, opacity: mobileMenu ? 0 : 1, transition: "opacity 0.2s" }}/>
+            <div style={{ width: 24, height: 2, background: "var(--ink)", transition: "transform 0.2s", transform: mobileMenu ? "rotate(-45deg) translate(5px,-5px)" : "" }}/>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {mobileMenu && (
+          <div style={{ background: "var(--cream)", padding: "1rem 1.5rem 1.5rem", borderTop: "1px solid var(--cream-dark)" }}>
+            {[["#especialidades", "Especialidades"], ["#sobre", "Sobre"], ["#como-funciona", "Como funciona"]].map(([href, label]) => (
+              <a key={href} href={href} onClick={() => setMobileMenu(false)} style={{ display: "block", padding: "0.75rem 0", fontFamily: "'DM Sans',sans-serif", color: "var(--ink-soft)", textDecoration: "none", borderBottom: "1px solid var(--cream-dark)" }}>{label}</a>
+            ))}
+            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-wa" onClick={() => setMobileMenu(false)} style={{ marginTop: "1rem", display: "inline-flex" }}>
+              <WhatsAppIcon size={18} /> Falar pelo WhatsApp
+            </a>
+          </div>
+        )}
+      </nav>
+
+      <style>{`
+        @media (max-width: 768px) { .hidden-mobile { display: none !important; } .show-mobile { display: flex !important; flex-direction: column; } }
+        @media (min-width: 769px) { .show-mobile { display: none !important; } }
+      `}</style>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 1 — HERO
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section id="hero" ref={hero} className="texture" style={{ paddingTop: "7rem", paddingBottom: "5rem", background: "var(--cream)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "4rem", alignItems: "center" }} className="hero-grid">
+          <style>{`
+            @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } }
+          `}</style>
+
+          {/* Left */}
+          <div>
+            <p className="fade-up section-eyebrow" style={{ marginBottom: "1.5rem" }}>
+              Psicólogo Clínico · Patos – PB
+            </p>
+            <h1 className="fade-up delay-1" style={{ fontSize: "clamp(2.6rem, 5vw, 4rem)", lineHeight: 1.15, fontWeight: 400, color: "var(--ink)", marginBottom: "1.25rem" }}>
+              Encontre sentido,<br />
+              <em style={{ color: "var(--terra)", fontStyle: "italic" }}>mesmo na dor</em>
+            </h1>
+            <p className="fade-up delay-2" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "1.1rem", color: "var(--ink-soft)", lineHeight: 1.7, marginBottom: "2.5rem", maxWidth: 460 }}>
+              Um espaço acolhedor para você se entender melhor — presencial em Patos (PB) ou online, no seu ritmo.
+            </p>
+
+            <div className="fade-up delay-3" style={{ marginBottom: "2rem" }}>
+              <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-wa" style={{ fontSize: "1.05rem" }}>
+                <WhatsAppIcon size={22} />
+                Falar pelo WhatsApp
+              </a>
+            </div>
+
+            {/* Credenciais */}
+            <div className="fade-up delay-4" style={{ display: "flex", flexWrap: "wrap", gap: "1rem", alignItems: "center" }}>
+              {[
+                { icon: "✦", label: "Conversa inicial gratuita" },
+                { icon: "·", label: "CRP 13/7689" },
+                { icon: "·", label: "Sessões de 50 min" },
+              ].map(({ icon, label }) => (
+                <span key={label} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.82rem", color: "var(--muted)", display: "flex", alignItems: "center", gap: "0.4rem" }}>
+                  <span style={{ color: "var(--sage)" }}>{icon}</span> {label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Right — Photo placeholder */}
+          <div className="fade-up delay-2">
+            <div className="photo-placeholder" style={{ borderRadius: "24px 80px 24px 80px", height: 480, position: "relative", overflow: "hidden" }}>
+              {/* Decorative circles */}
+              <div style={{ position: "absolute", width: 200, height: 200, borderRadius: "50%", background: "rgba(255,255,255,0.08)", top: -40, right: -40 }}/>
+              <div style={{ position: "absolute", width: 120, height: 120, borderRadius: "50%", background: "rgba(255,255,255,0.06)", bottom: 60, left: -30 }}/>
+              {/* Silhouette SVG */}
+              <svg width="80" height="80" viewBox="0 0 80 80" fill="rgba(255,255,255,0.5)" xmlns="http://www.w3.org/2000/svg" style={{ position: "relative", zIndex: 1 }}>
+                <circle cx="40" cy="28" r="18"/>
+                <path d="M8 72c0-17.673 14.327-32 32-32s32 14.327 32 32"/>
+              </svg>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.95rem", color: "rgba(255,255,255,0.7)", position: "relative", zIndex: 1, textAlign: "center", padding: "0 2rem" }}>
+                Foto profissional · fundo neutro
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 2 — ESPECIALIDADES
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section id="especialidades" ref={specs} style={{ background: "var(--cream-dark)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <p className="fade-up section-eyebrow" style={{ marginBottom: "1rem" }}>O que traz as pessoas até aqui</p>
+            <h2 className="fade-up delay-1" style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 400, color: "var(--ink)", lineHeight: 1.2 }}>
+              Você se reconhece<br /><em style={{ color: "var(--terra)" }}>em alguma dessas falas?</em>
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {[
+              {
+                num: "01", tag: "Ansiedade",
+                question: "Aquele aperto no peito sem saber o porquê?",
+                quote: '"Fico ansioso sem razão, meu coração dispara e eu não consigo parar de pensar."',
+                transform: "Aprender a entender os sinais do seu corpo e viver com mais presença"
+              },
+              {
+                num: "02", tag: "Depressão",
+                question: "Acordo cansado, nada parece fazer sentido.",
+                quote: '"Faço tudo que preciso, mas me sinto vazio. Não consigo sentir alegria em nada."',
+                transform: "Encontrar cor e significado nas pequenas coisas de novo"
+              },
+              {
+                num: "03", tag: "Relacionamentos",
+                question: "Os mesmos padrões se repetem sempre.",
+                quote: '"Toda vez que fico perto de alguém, aparece o mesmo problema. Não sei o que faço de errado."',
+                transform: "Criar vínculos mais honestos e seguros, começando pela relação consigo mesmo"
+              },
+              {
+                num: "04", tag: "Luto & Perdas",
+                question: "Ninguém entende o tamanho dessa perda.",
+                quote: '"Tentam me animar, mas eu só quero que alguém entenda o quanto dói."',
+                transform: "Carregar essa história com mais leveza, sem apagar o que ela significa"
+              }
+            ].map((s, i) => (
+              <div key={s.num} className={`fade-up delay-${i + 1} spec-card`}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-dark)" }}>
+                    {s.num} · {s.tag}
+                  </span>
+                  <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--sage-light)", display: "inline-block" }}/>
+                </div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 500, color: "var(--ink)", lineHeight: 1.3, marginBottom: "0.9rem" }}>
+                  {s.question}
+                </h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontStyle: "italic", fontSize: "0.9rem", color: "var(--muted)", lineHeight: 1.65, marginBottom: "1.4rem" }}>
+                  {s.quote}
+                </p>
+                <div style={{ borderTop: "1px solid var(--cream-dark)", paddingTop: "1rem", display: "flex", gap: "0.5rem", alignItems: "flex-start" }}>
+                  <span style={{ color: "var(--terra)", fontWeight: 600, marginTop: 2 }}>→</span>
+                  <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.88rem", color: "var(--ink-soft)", lineHeight: 1.6 }}>
+                    {s.transform}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 3 — SOBRE
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section id="sobre" ref={about} style={{ background: "var(--cream)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1.2fr", gap: "5rem", alignItems: "center" }} className="about-grid">
+          <style>{`@media (max-width: 900px) { .about-grid { grid-template-columns: 1fr !important; gap: 3rem !important; } .about-photo { height: 320px !important; } }`}</style>
+
+          {/* Photo */}
+          <div className="fade-up">
+            <div className="photo-placeholder about-photo" style={{ borderRadius: "80px 24px 80px 24px", height: 520 }}>
+              <div style={{ position: "absolute", width: 160, height: 160, borderRadius: "50%", background: "rgba(255,255,255,0.07)", top: 30, left: -30 }}/>
+              <svg width="70" height="70" viewBox="0 0 80 80" fill="rgba(255,255,255,0.5)" xmlns="http://www.w3.org/2000/svg" style={{ position: "relative", zIndex: 1 }}>
+                <circle cx="40" cy="28" r="18"/>
+                <path d="M8 72c0-17.673 14.327-32 32-32s32 14.327 32 32"/>
+              </svg>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "0.9rem", color: "rgba(255,255,255,0.65)", zIndex: 1, textAlign: "center", padding: "0 2rem" }}>
+                Foto informal · ambiente acolhedor
+              </p>
+            </div>
+          </div>
+
+          {/* Text */}
+          <div>
+            <p className="fade-up section-eyebrow" style={{ marginBottom: "1rem" }}>Sobre Linderlandio</p>
+            <h2 className="fade-up delay-1" style={{ fontSize: "clamp(2rem, 3vw, 2.8rem)", fontWeight: 400, lineHeight: 1.2, color: "var(--ink)", marginBottom: "1.75rem" }}>
+              Por que escolhi<br />
+              <em style={{ color: "var(--terra)" }}>a psicologia</em>
+            </h2>
+
+            <div className="fade-up delay-2" style={{ borderLeft: "3px solid var(--sage-light)", paddingLeft: "1.5rem", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.25rem", fontStyle: "italic", color: "var(--ink-soft)", lineHeight: 1.7 }}>
+                "Percebi que a maioria das nossas dificuldades tem raiz em algo que nunca tivemos espaço para entender — e que a escuta honesta pode ser o começo de uma mudança real."
+              </p>
+            </div>
+
+            <p className="fade-up delay-3" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "1rem", color: "var(--ink-soft)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+              Trabalho para que cada pessoa encontre, no espaço terapêutico, um lugar seguro para falar, refletir e compreender os padrões que a prendem. A gente vai entender juntos o que trava e criar saídas mais leves — sem julgamento, no seu ritmo.
+            </p>
+
+            <p className="fade-up delay-3" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "1rem", color: "var(--ink-soft)", lineHeight: 1.8, marginBottom: "2rem" }}>
+              Atendo de forma presencial em Patos (PB) e também online, para que a distância nunca seja um obstáculo para quem busca cuidado.
+            </p>
+
+            {/* Formação */}
+            <div className="fade-up delay-4" style={{ background: "var(--cream-dark)", borderRadius: 12, padding: "1.5rem", marginBottom: "1.75rem" }}>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-dark)", marginBottom: "0.75rem" }}>Formação</p>
+              {[
+                "Graduação em Psicologia",
+                "Psicólogo Clínico – CRP 13/7689"
+              ].map(f => (
+                <div key={f} style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginBottom: "0.5rem" }}>
+                  <span style={{ color: "var(--sage)", fontSize: "1rem" }}>✦</span>
+                  <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", color: "var(--ink-soft)" }}>{f}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="fade-up delay-5">
+              <span className="crp-badge">CRP 13/7689 — CFP</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 4 — COMO FUNCIONA
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section id="como-funciona" ref={how} style={{ background: "var(--sage-dark)" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <p className="fade-up section-eyebrow" style={{ color: "var(--sage-light)", marginBottom: "1rem" }}>O caminho até cá</p>
+            <h2 className="fade-up delay-1" style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 400, color: "white", lineHeight: 1.2 }}>
+              Como funciona<br />
+              <em style={{ color: "var(--terra-light)" }}>o processo</em>
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "2rem", position: "relative" }} className="steps-grid">
+            <style>{`@media (max-width: 768px) { .steps-grid { grid-template-columns: 1fr !important; } }`}</style>
+
+            {/* Connector line (desktop only) */}
+            <div style={{ position: "absolute", top: 28, left: "16%", right: "16%", height: 2, background: "rgba(255,255,255,0.15)", zIndex: 0 }} className="hidden-mobile"/>
+
+            {[
+              {
+                n: "01",
+                title: "Primeiro contato",
+                desc: "Manda uma mensagem pelo WhatsApp. A conversa inicial é gratuita — uns 20 minutinhos para você sentir se faz sentido seguir em frente. Sem compromisso."
+              },
+              {
+                n: "02",
+                title: "Agendamento",
+                desc: "Juntos escolhemos o dia e o horário que funcionam melhor pra você — presencial no consultório em Patos ou online, onde estiver. Sessões de 50 minutos."
+              },
+              {
+                n: "03",
+                title: "O processo",
+                desc: "Cada sessão é construída no seu ritmo. Não há pressa nem roteiro fixo — o espaço é seu. O que muda ao longo do tempo, você mesmo vai percebendo."
+              }
+            ].map((step, i) => (
+              <div key={step.n} className={`fade-up delay-${i + 1}`} style={{ background: "rgba(255,255,255,0.07)", borderRadius: 16, padding: "2rem", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.1)", position: "relative", zIndex: 1 }}>
+                <div className="step-number" style={{ background: "var(--terra)", marginBottom: "1.25rem" }}>{step.n}</div>
+                <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.4rem", fontWeight: 500, color: "white", marginBottom: "0.9rem" }}>
+                  {step.title}
+                </h3>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.92rem", color: "rgba(255,255,255,0.72)", lineHeight: 1.75 }}>
+                  {step.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA dentro do bloco */}
+          <div className="fade-up" style={{ textAlign: "center", marginTop: "3rem" }}>
+            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-wa" style={{ background: "var(--terra)" }}>
+              <WhatsAppIcon size={20} /> Quero a conversa gratuita
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 5 — FRASES DE ACOLHIMENTO
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section ref={quotes} style={{ background: "var(--cream-dark)" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
+            <p className="fade-up section-eyebrow" style={{ marginBottom: "1rem" }}>O que você pode esperar</p>
+            <h2 className="fade-up delay-1" style={{ fontSize: "clamp(2rem, 3.5vw, 2.8rem)", fontWeight: 400, color: "var(--ink)", lineHeight: 1.2 }}>
+              Palavras do próprio<br />
+              <em style={{ color: "var(--terra)" }}>Linderlandio</em>
+            </h2>
+          </div>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem" }}>
+            {[
+              {
+                tema: "Sobre o espaço",
+                frase: "Aqui você encontrará um espaço seguro para falar, refletir e compreender melhor seus sentimentos — sem pressa e sem julgamento."
+              },
+              {
+                tema: "Sobre o processo",
+                frase: "O processo terapêutico é construído com escuta atenta, respeito ao seu tempo e foco no que é genuinamente seu — não no que os outros esperam de você."
+              },
+              {
+                tema: "Sobre o cuidado",
+                frase: "Meu trabalho é te ajudar a desenvolver mais clareza, autonomia emocional e caminhos possíveis para lidar com aquilo que te pesa."
+              }
+            ].map((q, i) => (
+              <div key={q.tema} className={`fade-up delay-${i + 1} quote-card`}>
+                <span className="quote-mark">"</span>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-dark)", marginBottom: "1.5rem" }}>
+                  {q.tema}
+                </p>
+                <p style={{ fontFamily: "'Cormorant Garamond',serif", fontStyle: "italic", fontSize: "1.2rem", color: "var(--ink)", lineHeight: 1.75, marginBottom: "1.5rem", position: "relative", zIndex: 1 }}>
+                  "{q.frase}"
+                </p>
+                <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.85rem", color: "var(--muted)" }}>
+                  — Linderlandio Vasconcelos, Psicólogo
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 6 — CTA FINAL
+      ══════════════════════════════════════════════════════════════════════ */}
+      <section ref={cta} style={{ background: "var(--terra)", paddingTop: "5rem", paddingBottom: "5rem" }}>
+        <div style={{ maxWidth: 700, margin: "0 auto", textAlign: "center" }}>
+          <p className="fade-up section-eyebrow" style={{ color: "rgba(255,255,255,0.7)", marginBottom: "1.25rem" }}>
+            Quando estiver pronto
+          </p>
+          <h2 className="fade-up delay-1" style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "clamp(2.2rem, 4vw, 3.2rem)", fontWeight: 400, color: "white", lineHeight: 1.2, marginBottom: "1.25rem" }}>
+            Dar o primeiro passo<br />é a parte mais difícil.
+          </h2>
+          <p className="fade-up delay-2" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "1.05rem", color: "rgba(255,255,255,0.85)", lineHeight: 1.75, marginBottom: "2.5rem" }}>
+            Me manda uma mensagem quando estiver pronto. Sem formalidade, sem formulário — só uma conversa.
+          </p>
+          <div className="fade-up delay-3">
+            <a href={WA_LINK} target="_blank" rel="noreferrer" className="btn-wa" style={{ background: "white", color: "var(--terra)", fontSize: "1.05rem" }}
+              onMouseEnter={e => { e.currentTarget.style.background = "var(--cream)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "white"; }}
+            >
+              <WhatsAppIcon size={22} color="var(--terra-light)" />
+              Falar pelo WhatsApp
+            </a>
+          </div>
+          <p className="fade-up delay-4" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.82rem", color: "rgba(255,255,255,0.65)", marginTop: "1.5rem" }}>
+            Conversa inicial gratuita · Presencial em Patos (PB) e Online
+          </p>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          BLOCO 7 — RODAPÉ
+      ══════════════════════════════════════════════════════════════════════ */}
+      <footer style={{ padding: "4rem 1.5rem 2rem" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "3rem", marginBottom: "3rem" }}>
+
+            {/* Brand */}
+            <div>
+              <p style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.3rem", fontWeight: 400, color: "white", marginBottom: "0.75rem" }}>
+                Linderlandio Vasconcelos
+              </p>
+              <span className="crp-badge" style={{ fontSize: "0.78rem", marginBottom: "1rem", display: "inline-block" }}>CRP 13/7689</span>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.87rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.65 }}>
+                Psicólogo Clínico<br />Patos – PB · Atendimento presencial e online
+              </p>
+            </div>
+
+            {/* Contato */}
+            <div>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-light)", marginBottom: "1.25rem" }}>
+                Contato
+              </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                <a href={WA_LINK} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem" }}>
+                  <WhatsAppIcon size={18} color="var(--sage-light)" /> +55 83 99990-2803
+                </a>
+                <a href={INSTAGRAM} target="_blank" rel="noreferrer" style={{ display: "flex", alignItems: "center", gap: "0.6rem", fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem" }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sage-light)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+                  </svg>
+                  @linderlandiopsi
+                </a>
+              </div>
+            </div>
+
+            {/* Endereço */}
+            <div>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.72rem", fontWeight: 600, letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--sage-light)", marginBottom: "1.25rem" }}>
+                Consultório
+              </p>
+              <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.88rem", color: "rgba(255,255,255,0.6)", lineHeight: 1.7 }}>
+                R. Antônio Gomes Costa, 84<br />
+                Jardim Bela Vista<br />
+                Patos – PB, 58704-412
+              </p>
+            </div>
+
+          </div>
+
+          {/* Bottom bar */}
+          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "1.75rem", display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: "1rem", alignItems: "center" }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)" }}>
+              © {new Date().getFullYear()} Linderlandio Vasconcelos — CRP 13/7689. Todos os direitos reservados.
+            </p>
+            <button onClick={() => setLgpdModal(true)} style={{ background: "none", border: "none", cursor: "pointer", fontFamily: "'DM Sans',sans-serif", fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", transition: "color 0.2s" }}
+              onMouseEnter={e => e.target.style.color = "rgba(255,255,255,0.7)"}
+              onMouseLeave={e => e.target.style.color = "rgba(255,255,255,0.4)"}
+            >
+              Política de Privacidade
+            </button>
+          </div>
+        </div>
+      </footer>
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          MODAL LGPD
+      ══════════════════════════════════════════════════════════════════════ */}
+      {lgpdModal && (
+        <div className="modal-overlay" onClick={() => setLgpdModal(false)}>
+          <div className="modal-box" onClick={e => e.stopPropagation()}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "1.5rem" }}>
+              <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: "1.7rem", fontWeight: 500, color: "var(--ink)" }}>
+                Política de Privacidade
+              </h3>
+              <button onClick={() => setLgpdModal(false)} style={{ background: "none", border: "none", cursor: "pointer", fontSize: "1.5rem", color: "var(--muted)", lineHeight: 1 }}>×</button>
+            </div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.9rem", color: "var(--ink-soft)", lineHeight: 1.75 }}>
+              <p style={{ marginBottom: "1rem" }}><strong>Coleta de dados:</strong> Os dados fornecidos por você (nome, telefone, e-mail) são utilizados exclusivamente para contato e agendamento de consultas, em conformidade com a LGPD (Lei nº 13.709/2018).</p>
+              <p style={{ marginBottom: "1rem" }}><strong>Sigilo profissional:</strong> Todas as informações compartilhadas em sessão são protegidas pelo sigilo ético profissional, conforme o Código de Ética do CFP.</p>
+              <p style={{ marginBottom: "1rem" }}><strong>Compartilhamento:</strong> Seus dados não são vendidos, repassados ou compartilhados com terceiros, exceto quando exigido por lei.</p>
+              <p style={{ marginBottom: "1rem" }}><strong>Seus direitos:</strong> Você pode solicitar acesso, correção ou exclusão dos seus dados a qualquer momento, entrando em contato diretamente pelo WhatsApp.</p>
+              <p style={{ marginBottom: "1rem" }}><strong>Cookies:</strong> Este site não utiliza cookies de rastreamento ou ferramentas de publicidade.</p>
+              <p style={{ color: "var(--muted)", fontSize: "0.82rem" }}>
+                Responsável: Linderlandio Vasconcelos — CRP 13/7689<br />
+                Contato: +55 83 99990-2803
+              </p>
+            </div>
+            <button onClick={() => setLgpdModal(false)} className="btn-wa" style={{ marginTop: "1.75rem", width: "100%", justifyContent: "center" }}>
+              Entendi
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* ══════════════════════════════════════════════════════════════════════
+          WHATSAPP FLUTUANTE
+      ══════════════════════════════════════════════════════════════════════ */}
+      <a href={WA_LINK} target="_blank" rel="noreferrer" title="Falar pelo WhatsApp">
+        <button className="wa-float">
+          <WhatsAppIcon size={30} />
+        </button>
+      </a>
+    </>
+  );
+}
