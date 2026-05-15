@@ -1,405 +1,213 @@
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicóloga em São Paulo — Ana Clara Oliveira | CRP 06/123456</title>
-    <meta name="description" content="Psicóloga especializada em ansiedade, depressão e relacionamentos, atendendo em São Paulo e online para todo o Brasil.">
-
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --fundo: #F7F9FC;
-            --superficie: #FFFFFF;
-            --primaria: #4A90E2;
-            --destaque: #FF6F61;
-            --texto-principal: #333333;
-            --texto-secundario: #555555;
-            --whatsapp-bg: #25D366;
-        }
-        
-        body {
-            margin: 0;
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--fundo);
-            color: var(--texto-principal);
-        }
-        
-        header {
-            position: fixed;
-            width: 100%;
-            background: var(--superficie);
-            backdrop-filter: blur(8px);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            padding: 0.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: box-shadow 0.2s;
-        }
-        
-        header a {
-            text-decoration: none;
-            color: var(--texto-principal);
-            margin: 0 1rem;
-        }
-        
-        header .cta-secundario {
-            background-color: var(--primaria);
-            color: var(--superficie);
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            display: flex;
-            align-items: center;
-            transition: opacity 0.2s;
-        }
-        
-        header .cta-secundario:hover {
-            opacity: 0.8;
-        }
-        
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 5rem 2rem;
-            background-color: var(--superficie);
-            min-height: 100vh;
-        }
-        
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .hero p {
-            margin-bottom: 2rem;
-        }
-
-        .hero .cta-principal {
-            color: var(--superficie);
-            background-color: var(--primaria);
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            transition: transform 0.2s;
-            animation: pop 0.4s ease;
-        }
-        
-        .hero .cta-principal:hover {
-            transform: scale(1.05);
-        }
-        
-        @keyframes pop {
-            0% { transform: scale(0.9); }
-            70% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        /* Especialidades */
-        .especialidades {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1rem;
-            padding: 2rem;
-            background-color: var(--fundo);
-        }
-
-        @media (min-width: 640px) {
-            .especialidades {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .especialidade {
-            background-color: var(--superficie);
-            padding: 1rem;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .especialidade h3 {
-            margin: 0.5rem 0;
-        }
-        
-        .sobre {
-            padding: 4rem 2rem;
-            background-color: var(--superficie);
-            text-align: center;
-        }
-        
-        .sobre h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .sobre .crp-badge {
-            background-color: var(--destaque);
-            color: var(--superficie);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            display: inline-block;
-            margin-top: 1rem;
-        }
-
-        .como-funciona {
-            display: flex;
-            flex-direction: column;
-            padding: 2rem;
-            background-color: var(--fundo);
-        }
-
-        .como-funciona-step {
-            margin-bottom: 1rem;
-            padding: 1rem;
-            background-color: var(--superficie);
-            border-radius: 5px;
-        }
-
-        .como-funciona-step h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.25rem;
-        }
-
-        /* Frases de Acolhimento */
-        .frases-acolhimento {
-            padding: 2rem;
-            background-color: var(--superficie);
-            text-align: center;
-        }
-
-        .frase-acolhimento {
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        .cta-final {
-            padding: 3rem 2rem;
-            text-align: center;
-            background-color: var(--fundo);
-        }
-
-        .cta-final .cta {
-            margin-top: 1rem;
-            display: inline-flex;
-            align-items: center;
-            background-color: var(--primaria);
-            color: var(--superficie);
-            padding: 1rem 2rem;
-            border-radius: 5px;
-            transition: transform 0.2s;
-            animation: pop 0.4s ease;
-        }
-
-        .cta-final .cta:hover {
-            transform: scale(1.05);
-        }
-
-        footer {
-            padding: 2rem;
-            background-color: var(--superficie);
-            text-align: center;
-        }
-        
-        .rodape-contato {
-            margin: 1rem 0;
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-        }
-        
-        .rodape-contato a {
-            color: var(--texto-secundario);
-        }
-
-        .whatsapp-floating {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: var(--whatsapp-bg);
-            width: 3rem;
-            height: 3rem;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            z-index: 50;
-        }
-
-        .whatsapp-floating svg {
-            fill: var(--superficie);
-        }
-    </style>
-</head>
-<body>
-
-<header>
-    <a href="#hero">Ana Clara Psicologia</a>
-    <nav>
-        <a href="#hero">Home</a>
-        <a href="#especialidades">Especialidades</a>
-        <a href="#sobre">Sobre</a>
-        <a href="#como-funciona">Como Funciona</a>
-        <a href="#cta-final">Contato</a>
-    </nav>
-    <a href="https://wa.me/5511999999999" class="cta-secundario">Agende uma consulta</a>
-</header>
-
-<section id="hero" class="hero">
-    <p>Psicóloga Clínica · Pinheiros, São Paulo</p>
-    <h1>Encontre o equilíbrio emocional que você precisa para viver melhor.</h1>
-    <p>Atendimento especializado em São Paulo e online para todo o Brasil.</p>
-    <a href="https://wa.me/5511999999999" class="cta-principal">
-        Conversar no WhatsApp
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M16 32A16 16 0 1 0 0 16a16 16 0 0 0 16 16zm9.527-8.873l-.556-2.037c-.148-.589-.866-.932-1.296-.589l-2.018 1.545a.348.348 0 0 1-.373.029l-1.867-.889a.924.924 0 0 1-.443-.572c-.029-.148-.088-.446.029-.659l.961-1.797a.341.341 0 0 0-.101-.444L10.612 5.672a.347.347 0 0 0-.179-.059h-.22a1.253 1.253 0 0 0 0 2.494c.112 0 .204.071.273.176l3.022 5.68c.028.053.065.106.148.136l-.943 1.696c-1.171.299-2.24 1.072-3.168 2.047a2.93 2.93 0 0 0-1.097 2.695h.007c-.194.062-.564.287-.825.943-.319.827-.861 2.007-.403 3.288a4.41 4.41 0 0 0 1.005 1.562h.003a9.794 9.794 0 0 0 6.767 2.735h.014l-.007.003a9.726 9.726 0 0 0 7.577-3.488c.749-1.114 1.203-2.435 1.203-3.732a.342.342 0 0 0-.156-.407z"/></svg>
-    </a>
-    <div style="margin-top: 1rem;">
-        <span>Conversa inicial gratuita</span>
-        <span>· CRP 06/123456</span>
-        <span>· Sessões de 50 minutos</span>
-    </div>
-</section>
-
-<section id="especialidades" class="especialidades">
-    <div class="especialidade">
-        <h3>Ansiedade</h3>
-        <p>"Sinto uma angústia constante que não consigo explicar."</p>
-        <p>Aquele aperto no peito sem saber o porquê? → Mais calma e controle emocional.</p>
-    </div>
-    <div class="especialidade">
-        <h3>Depressão</h3>
-        <p>"Acordo sem ânimo e tudo parece sem sentido."</p>
-        <p>A falta de vontade de fazer as coisas? → Motivação e alegria de viver.</p>
-    </div>
-    <div class="especialidade">
-        <h3>Relacionamentos</h3>
-        <p>"Sinto que me distancio das pessoas que amo."</p>
-        <p>Dificuldades em se conectar com as pessoas? → Relações mais satisfatórias e saudáveis.</p>
-    </div>
-</section>
-
-<section id="sobre" class="sobre">
-    <h2>Por que escolhi ser psicóloga?</h2>
-    <p>A psicologia me permite ajudar pessoas a encontrar seu equilíbrio emocional. Meu trabalho é focado no acolhimento e em ajudar cada um a descobrir seu próprio caminho. Espero que meus pacientes sintam segurança e conforto ao se abrir.</p>
-    <h3>Graduação:</h3>
-    <p>Graduação em Psicologia pela USP</p>
-    <p>Especialização em TCC pelo IPq-HCFMUSP</p>
-    <div class="crp-badge">CRP 06/123456</div>
-    <div style="background: var(--gradiente-placeholder-foto); padding: 1rem; border-radius: 5px; margin-top: 1rem;">
-        <p><i>Foto informal</i></p>
-    </div>
-</section>
-
-<section id="como-funciona" class="como-funciona">
-    <div class="como-funciona-step">
-        <h3>1. Primeiro contato</h3>
-        <p>Conversa inicial gratuita para conhecermos melhor.</p>
-    </div>
-    <div class="como-funciona-step">
-        <h3>2. Agendamento</h3>
-        <p>Podemos agendar sessões presenciais ou online, com a duração de 50 minutos.</p>
-    </div>
-    <div class="como-funciona-step">
-        <h3>3. O processo</h3>
-        <p>Uma jornada colaborativa onde a empatia e a escuta estão sempre presentes.</p>
-    </div>
-</section>
-
-<section class="frases-acolhimento">
-    <div class="frase-acolhimento">
-        <p>"Este é um lugar seguro para você se sentir acolhido e entendido."</p>
-        <p>— Ana Clara, Psicóloga</p>
-    </div>
-    <div class="frase-acolhimento">
-        <p>"O caminho pode ser desafiador, mas você não precisa trilhar sozinho."</p>
-        <p>— Ana Clara, Psicóloga</p>
-    </div>
-    <div class="frase-acolhimento">
-        <p>"Cada passo dado em direção à sua saúde mental é valioso e merece ser celebrado."</p>
-        <p>— Ana Clara, Psicóloga</p>
-    </div>
-</section>
-
-<section id="cta-final" class="cta-final">
-    <p>Se você ainda está em dúvida, isso é completamente normal.</p>
-    <p>Vamos conversar sem compromisso?</p>
-    <a href="https://wa.me/5511999999999" class="cta">
-        Conversar no WhatsApp
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M16 32A16 16 0 1 0 0 16a16 16 0 0 0 16 16zm9.527-8.873l-.556-2.037c-.148-.589-.866-.932-1.296-.589l-2.018 1.545a.348.348 0 0 1-.373.029l-1.867-.889a.924.924 0 0 1-.443-.572c-.029-.148-.088-.446.029-.659l.961-1.797a.341.341 0 0 0-.101-.444L10.612 5.672a.347.347 0 0 0-.179-.059h-.22a1.253 1.253 0 0 0 0 2.494c.112 0 .204.071.273.176l3.022 5.68c.028.053.065.106.148.136l-.943 1.696c-1.171.299-2.24 1.072-3.168 2.047a2.93 2.93 0 0 0-1.097 2.695h.007c-.194.062-.564.287-.825.943-.319.827-.861 2.007-.403 3.288a4.41 4.41 0 0 0 1.005 1.562h.003a9.794 9.794 0 0 0 6.767 2.735h.014l-.007.003a9.726 9.726 0 0 0 7.577-3.488c.749-1.114 1.203-2.435 1.203-3.732a.342.342 0 0 0-.156-.407z"/></svg>
-    </a>
-    <p style="margin-top: 1rem;">Conversa inicial gratuita · Ambos em Pinheiros, São Paulo</p>
-</section>
-
-<footer>
-    <p>Ana Clara Oliveira - CRP 06/123456</p>
-    <div class="rodape-contato">
-        <a href="https://wa.me/5511999999999">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M16 32A16 16 0 1 0 0 16a16 16 0 0 0 16 16zm9.527-8.873l-.556-2.037c-.148-.589-.866-.932-1.296-.589l-2.018 1.545a.348.348 0 0 1-.373.029l-1.867-.889a.924.924 0 0 1-.443-.572c-.029-.148-.088-.446.029-.659l.961-1.797a.341.341 0 0 0-.101-.444L10.612 5.672a.347.347 0 0 0-.179-.059h-.22a1.253 1.253 0 0 0 0 2.494c.112 0 .204.071.273.176l3.022 5.68c.028.053.065.106.148.136l-.943 1.696c-1.171.299-2.24 1.072-3.168 2.047a2.93 2.93 0 0 0-1.097 2.695h.007c-.194.062-.564.287-.825.943-.319.827-.861 2.007-.403 3.288a4.41 4.41 0 0 0 1.005 1.562h.003a9.794 9.794 0 0 0 6.767 2.735h.014l-.007.003a9.726 9.726 0 0 0 7.577-3.488c.749-1.114 1.203-2.435 1.203-3.732a.342.342 0 0 0-.156-.407z"/></svg>
-        </a>
-        <a href="mailto:contato@anaclarapsi.com.br">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M27.333 4H4.667C3.2 4 2 5.2 2 6.667v18.666C2 26.8 3.2 28 4.667 28h22.666C28.8 28 30 26.8 30 25.333V6.667C30 5.2 28.8 4 27.333 4zm-1.666 4.667-8.434 6.188a1 1 0 0 1-1.333 0L6.333 8.667h19.334zM4.667 25.333V6.667l9.332 6.829a3 3 0 0 0 3.953 0l9.332-6.828v18.666H4.667z"/></svg>
-        </a>
-        <a href="https://www.instagram.com/@anaclara.psi">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M21.167 3.335H10.833C5.782 3.335 2 7.117 2 12.167v10.333c0 5.05 3.782 8.832 8.833 8.832h10.333c5.05 0 8.832-3.782 8.832-8.832V12.167c0-5.05-3.782-8.832-8.832-8.832zm6.5 19.165c0 3.592-2.909 6.5-6.5 6.5H10.833c-3.591 0-6.5-2.908-6.5-6.5V12.167c0-3.592 2.909-6.5 6.5-6.5h10.333c3.591 0 6.5 2.908 6.5 6.5v10.333zM16 9.167c-3.775 0-6.833 3.058-6.833 6.833S12.225 22.833 16 22.833 22.833 19.775 22.833 16 19.775 9.167 16 9.167zm0 11.5c-2.577 0-4.667-2.09-4.667-4.667S13.423 11.333 16 11.333 20.667 13.423 20.667 16 18.577 20.667 16 20.667zm8.833-12.382c0 .828-.671 1.5-1.5 1.5s-1.5-.672-1.5-1.5.671-1.5 1.5-1.5 1.5.672 1.5 1.5z"/></svg>
-        </a>
-    </div>
-    <p>Rua dos Pinheiros, 1234 - Conjunto 56</p>
-    <p><a href="#" id="privacy-policy-link">Política de Privacidade</a></p>
-    <p>© 2023 Ana Clara Oliveira - CRP 06/123456</p>
-</footer>
-
-<div class="whatsapp-floating" onclick="window.location.href='https://wa.me/5511999999999'">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="1.2em" height="1.2em"><path d="M16 32A16 16 0 1 0 0 16a16 16 0 0 0 16 16zm9.527-8.873l-.556-2.037c-.148-.589-.866-.932-1.296-.589l-2.018 1.545a.348.348 0 0 1-.373.029l-1.867-.889a.924.924 0 0 1-.443-.572c-.029-.148-.088-.446.029-.659l.961-1.797a.341.341 0 0 0-.101-.444L10.612 5.672a.347.347 0 0 0-.179-.059h-.22a1.253 1.253 0 0 0 0 2.494c.112 0 .204.071.273.176l3.022 5.68c.028.053.065.106.148.136l-.943 1.696c-1.171.299-2.24 1.072-3.168 2.047a2.93 2.93 0 0 0-1.097 2.695h.007c-.194.062-.564.287-.825.943-.319.827-.861 2.007-.403 3.288a4.41 4.41 0 0 0 1.005 1.562h.003a9.794 9.794 0 0 0 6.767 2.735h.014l-.007.003a9.726 9.726 0 0 0 7.577-3.488c.749-1.114 1.203-2.435 1.203-3.732a.342.342 0 0 0-.156-.407z"/></svg>
-</div>
-
-<script>
-    const privacyLink = document.getElementById('privacy-policy-link');
-    privacyLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        alert('Este é um modal simulado para a política de privacidade.');
-    });
-
-    function handleIntersection(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Psicóloga em São Paulo — Ana Clara | CRP 06/123456</title>
+  <meta name="description" content="Especializada em terapia cognitivo-comportamental, oferecendo consultas em São Paulo e online. Ansiedade, depressão, e mais.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cor-fundo: #FAF3E0;
+      --cor-superficie: #F3E6D4;
+      --cor-primaria: #D9CBA7;
+      --cor-destaque: #C7BBA0;
+      --cor-texto-principal: #4E4B3A;
+      --cor-texto-secundario: #7B7261;
     }
 
-    const options = {
-        threshold: 0.1
-    };
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto-principal);
+    }
 
-    const observer = new IntersectionObserver(handleIntersection, options);
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      padding: 50px 20px;
+      background-color: var(--cor-superficie);
+    }
 
-    document.querySelectorAll('.especialidade, .como-funciona-step, .frase-acolhimento').forEach((section) => {
-        observer.observe(section);
-        section.style.opacity = 0;
-        section.style.transform = 'translateY(20px)';
-        section.classList.add('animatable');
-    });
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(250, 243, 224, 0.8);
+      backdrop-filter: blur(8px);
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      z-index: 10;
+    }
 
-    const header = document.querySelector('header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            header.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
-        } else {
-            header.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
-        }
-    });
-</script>
+    nav .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5em;
+      color: var(--cor-texto-principal);
+    }
 
+    nav .links a {
+      margin-right: 20px;
+      color: var(--cor-texto-principal);
+      text-decoration: none;
+    }
+
+    nav .cta {
+      background-color: var(--cor-primaria);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: background-color 200ms;
+    }
+
+    nav .cta:hover {
+      background-color: var(--cor-destaque);
+    }
+
+    .hero .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .hero .content {
+      max-width: 600px;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: var(--cor-texto-principal);
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: var(--cor-texto-secundario);
+    }
+
+    .hero .cta-principal {
+      background-color: #25d366;
+      color: white;
+      padding: 15px 30px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      transition: transform 200ms;
+    }
+
+    .hero .cta-principal:hover {
+      transform: scale(1.05);
+    }
+
+    .hero .credibilidade {
+      list-style-type: none;
+      padding: 0;
+      color: var(--cor-texto-secundario);
+    }
+
+    .hero .placeholder-foto {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(145deg, var(--cor-primaria), var(--cor-superficie));
+      border-radius: 20px;
+      width: 100%;
+      padding: 50px;
+      text-align: center;
+      font-style: italic;
+      color: var(--cor-texto-principal);
+    }
+
+    .whatsapp-icon svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+      margin-right: 10px;
+    }
+
+    @media (min-width: 640px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero .container {
+        padding: 20px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="logo">Ana Clara Psicologia</div>
+    <div class="links">
+      <a href="#dores-especialidades">Especialidades</a>
+      <a href="#sobre-psicologa">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#frases-acolhimento">Frases</a>
+      <a href="#cta-final">Contato</a>
+    </div>
+    <a class="cta" href="#WhatsApp">Agende sua consulta</a>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="content">
+        <span>Psicóloga Clínica · Pinheiros, São Paulo</span>
+        <h1>Encontre o equilíbrio emocional que você precisa para viver melhor.</h1>
+        <p>Atendimento especializado em São Paulo e online para todo o Brasil.</p>
+        <a class="cta-principal" href="#WhatsApp">
+          <span class="whatsapp-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12.04 4C7.03 4 3 8.03 3 13c0 2.39.87 4.58 2.34 6.28L3 21.76l2.55-1.5C7.44 20.79 9.84 21.54 12.4 21.54c5.02 0 9.06-4.03 9.06-9.06S17.06 4 12.04 4zm0 15.24c-1.18 0-2.33-.23-3.4-.66l-.25-.11-.71.42-.99.58.3-.85.26-.73-.44-.71a8.354 8.354 0 0 1-1.14-4.19C6 8 8.71 5.3 12.04 5.3c3.33 0 6.04 2.7 6.04 6.04 0 3.34-2.71 6.04-6.04 6.04zm4.34-3.51c-.21-.1-1.21-.59-1.4-.66s-.33-.1-.47.1-.54.65-.66.79-.24.15-.45.05c-.22-.11-.94-.34-1.79-1.09-.66-.59-1.1-1.31-1.24-1.54-.13-.23-.01-.36.1-.47.11-.11.24-.28.36-.41s.15-.23.21-.39.03-.28-.04-.4-.45-1.06-.61-1.47c-.16-.41-.33-.35-.45-.35-.12 0-.26 0-.4-.01s-.41-.06-.63-.06-.33-2.13-2.34-4.56C7.34 8 7.49 8.56 7.62 8.8c.13.24 1.55 3.79 1.3 4.65s-.36.82-.42.93-.14.19-.26.1-.78-.3-1.13-.38C5.87 13.32 5.33 13.23 5 12.9c-.33-.33-.12-.68 0-.81.12-.13.89-1.41 1.9-1.67s.98.56 1.1.67c.12.11.21.1.3.07s1.16-1.81 -1.8-8c4.21 1.04 5.43 5.88 5.43 6.13 0 .12 0 .26-.06.35-.06.1-.2.43-.37.58-.18.15-.6.15-.63.15-.03.01 2.94.01 2.94 4.32 0 .2-.17.33-.3.44s-.45.4-.54.37z"/>
+            </svg>
+          </span>
+          Conversar no WhatsApp
+        </a>
+        <ul class="credibilidade">
+          <li>Conversa inicial gratuita</li>
+          <li>CRP 06/123456</li>
+          <li>Sessões de 50 minutos</li>
+        </ul>
+      </div>
+      <div class="placeholder-foto">
+        <span>Foto profissional</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Additional sections (bloco_2, bloco_3, etc.) would be added here following a similar pattern -->
+
+  <footer>
+    <!-- Footer content here -->
+  </footer>
+
+  <script>
+    // JavaScript for interactions and animations
+  </script>
 </body>
+
 </html>
 ```
