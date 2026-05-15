@@ -1,213 +1,336 @@
 ```html
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Psicóloga em São Paulo — Ana Clara | CRP 06/123456</title>
-  <meta name="description" content="Especializada em terapia cognitivo-comportamental, oferecendo consultas em São Paulo e online. Ansiedade, depressão, e mais.">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <title>Psicóloga em São Paulo — Ana Clara Oliveira | CRP 06/123456</title>
+  <meta name="description" content="Psicóloga Clínica em São Paulo, especializada em Ansiedade, Depressão e Relacionamentos. Atendimento presencial e online.">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --cor-fundo: #FAF3E0;
-      --cor-superficie: #F3E6D4;
-      --cor-primaria: #D9CBA7;
-      --cor-destaque: #C7BBA0;
-      --cor-texto-principal: #4E4B3A;
-      --cor-texto-secundario: #7B7261;
+      --fundo: #F7F3E7;
+      --superficie: #E9E1D4;
+      --primaria: #C7B9A4;
+      --destaque: #A59A83;
+      --texto-principal: #4B3D31;
+      --texto-secundario: #7C6D61;
     }
 
     body {
       margin: 0;
       font-family: 'DM Sans', sans-serif;
-      background-color: var(--cor-fundo);
-      color: var(--cor-texto-principal);
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr;
-      align-items: center;
-      padding: 50px 20px;
-      background-color: var(--cor-superficie);
+      background-color: var(--fundo);
+      color: var(--texto-principal);
     }
 
     nav {
       position: fixed;
       top: 0;
       width: 100%;
-      background-color: rgba(250, 243, 224, 0.8);
+      background-color: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(8px);
-      padding: 10px 20px;
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 100;
+      transition: box-shadow 0.3s;
+    }
+
+    nav.scrolled {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      z-index: 10;
     }
 
     nav .logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5em;
-      color: var(--cor-texto-principal);
+      font-size: 1.5rem;
     }
 
-    nav .links a {
-      margin-right: 20px;
-      color: var(--cor-texto-principal);
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+      margin: 0;
+    }
+
+    nav ul li {
+      margin: 0;
+    }
+
+    nav ul a {
       text-decoration: none;
+      color: var(--texto-principal);
+      transition: color 0.2s;
     }
 
-    nav .cta {
-      background-color: var(--cor-primaria);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 5px;
-      text-decoration: none;
-      transition: background-color 200ms;
+    nav ul a:hover {
+      color: var(--destaque);
     }
 
-    nav .cta:hover {
-      background-color: var(--cor-destaque);
-    }
-
-    .hero .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    section.hero {
       display: grid;
       grid-template-columns: 1fr;
-      align-items: center;
-      gap: 20px;
+      padding: 6rem 1rem 2rem 1rem;
+      background-color: var(--superficie);
+      justify-items: center;
+      text-align: center;
     }
 
-    .hero .content {
+    @media (min-width: 1024px) {
+      section.hero {
+        grid-template-columns: 1fr 1fr;
+        text-align: left;
+      }
+    }
+
+    .hero-content {
       max-width: 600px;
     }
 
-    .hero h1 {
+    .hero-content h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5em;
-      margin-bottom: 20px;
-      color: var(--cor-texto-principal);
+      font-size: 2.5rem;
+      color: var(--texto-principal);
     }
 
-    .hero p {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: var(--cor-texto-secundario);
+    .hero-content p {
+      color: var(--texto-secundario);
+      margin: 1rem 0;
     }
 
-    .hero .cta-principal {
-      background-color: #25d366;
-      color: white;
-      padding: 15px 30px;
-      border-radius: 5px;
+    .hero-content .tag {
+      font-size: 0.875rem;
+      color: var(--destaque);
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-content button {
+      background-color: var(--primaria);
+      color: #FFFFFF;
       border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      font-size: 1rem;
       cursor: pointer;
-      text-decoration: none;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      transition: transform 200ms;
+      gap: 0.5rem;
+      transition: background-color 0.2s;
     }
 
-    .hero .cta-principal:hover {
-      transform: scale(1.05);
+    .hero-content button:hover {
+      background-color: var(--destaque);
     }
 
-    .hero .credibilidade {
-      list-style-type: none;
-      padding: 0;
-      color: var(--cor-texto-secundario);
-    }
-
-    .hero .placeholder-foto {
+    .hero-image {
       display: flex;
       justify-content: center;
       align-items: center;
-      background: linear-gradient(145deg, var(--cor-primaria), var(--cor-superficie));
-      border-radius: 20px;
-      width: 100%;
-      padding: 50px;
-      text-align: center;
-      font-style: italic;
-      color: var(--cor-texto-principal);
+      background: linear-gradient(135deg, var(--fundo), var(--superficie));
+      border-radius: 10px;
+      height: 300px;
+      width: 300px;
     }
 
-    .whatsapp-icon svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-      margin-right: 10px;
+    .hero-image::before {
+      content: 'Foto profissional';
+      font-style: italic;
+      color: var(--texto-secundario);
+    }
+
+    section.dores-especialidades {
+      padding: 2rem 1rem;
+      background-color: var(--fundo);
+    }
+
+    .dores-especialidades h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .specialty-cards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
     }
 
     @media (min-width: 640px) {
-      .hero {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .hero .container {
-        padding: 20px;
+      .specialty-cards {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
     @media (min-width: 1024px) {
-      .hero {
-        grid-template-columns: 1fr 1fr;
+      .specialty-cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .card {
+      background-color: var(--superficie);
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      color: var(--destaque);
+    }
+
+    .card p {
+      color: var(--texto-secundario);
+    }
+
+    footer {
+      background-color: var(--superficie);
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    footer p {
+      margin: 0.5rem 0;
+      font-size: 0.875rem;
+      color: var(--texto-secundario);
+    }
+
+    .social-links a {
+      color: var(--texto-principal);
+      margin: 0.5rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .social-links a:hover {
+      color: var(--destaque);
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 50;
+      animation: pop 2s infinite;
+      cursor: pointer;
+    }
+
+    @keyframes pop {
+      0%, 20%, 50%, 80%, 100% {
+        transform: scale(1);
+      }
+      40% {
+        transform: scale(1.1);
+      }
+      60% {
+        transform: scale(1.05);
       }
     }
   </style>
 </head>
-
 <body>
   <nav>
-    <div class="logo">Ana Clara Psicologia</div>
-    <div class="links">
-      <a href="#dores-especialidades">Especialidades</a>
-      <a href="#sobre-psicologa">Sobre</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#frases-acolhimento">Frases</a>
-      <a href="#cta-final">Contato</a>
-    </div>
-    <a class="cta" href="#WhatsApp">Agende sua consulta</a>
+    <div class="logo">Ana Clara Oliveira</div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Dores e Especialidades</a></li>
+      <li><a href="#">Sobre a Psicóloga</a></li>
+      <li><a href="#">Como Funciona</a></li>
+      <li><a href="#">Frases de Acolhimento</a></li>
+      <li><a href="#">Contato</a></li>
+    </ul>
+    <button>Agendar Conversa Inicial</button>
   </nav>
 
   <section class="hero">
-    <div class="container">
-      <div class="content">
-        <span>Psicóloga Clínica · Pinheiros, São Paulo</span>
-        <h1>Encontre o equilíbrio emocional que você precisa para viver melhor.</h1>
-        <p>Atendimento especializado em São Paulo e online para todo o Brasil.</p>
-        <a class="cta-principal" href="#WhatsApp">
-          <span class="whatsapp-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12.04 4C7.03 4 3 8.03 3 13c0 2.39.87 4.58 2.34 6.28L3 21.76l2.55-1.5C7.44 20.79 9.84 21.54 12.4 21.54c5.02 0 9.06-4.03 9.06-9.06S17.06 4 12.04 4zm0 15.24c-1.18 0-2.33-.23-3.4-.66l-.25-.11-.71.42-.99.58.3-.85.26-.73-.44-.71a8.354 8.354 0 0 1-1.14-4.19C6 8 8.71 5.3 12.04 5.3c3.33 0 6.04 2.7 6.04 6.04 0 3.34-2.71 6.04-6.04 6.04zm4.34-3.51c-.21-.1-1.21-.59-1.4-.66s-.33-.1-.47.1-.54.65-.66.79-.24.15-.45.05c-.22-.11-.94-.34-1.79-1.09-.66-.59-1.1-1.31-1.24-1.54-.13-.23-.01-.36.1-.47.11-.11.24-.28.36-.41s.15-.23.21-.39.03-.28-.04-.4-.45-1.06-.61-1.47c-.16-.41-.33-.35-.45-.35-.12 0-.26 0-.4-.01s-.41-.06-.63-.06-.33-2.13-2.34-4.56C7.34 8 7.49 8.56 7.62 8.8c.13.24 1.55 3.79 1.3 4.65s-.36.82-.42.93-.14.19-.26.1-.78-.3-1.13-.38C5.87 13.32 5.33 13.23 5 12.9c-.33-.33-.12-.68 0-.81.12-.13.89-1.41 1.9-1.67s.98.56 1.1.67c.12.11.21.1.3.07s1.16-1.81 -1.8-8c4.21 1.04 5.43 5.88 5.43 6.13 0 .12 0 .26-.06.35-.06.1-.2.43-.37.58-.18.15-.6.15-.63.15-.03.01 2.94.01 2.94 4.32 0 .2-.17.33-.3.44s-.45.4-.54.37z"/>
-            </svg>
-          </span>
-          Conversar no WhatsApp
-        </a>
-        <ul class="credibilidade">
-          <li>Conversa inicial gratuita</li>
-          <li>CRP 06/123456</li>
-          <li>Sessões de 50 minutos</li>
-        </ul>
+    <div class="hero-content">
+      <div class="tag">Psicóloga Clínica · Pinheiros, São Paulo</div>
+      <h1>Encontre o equilíbrio emocional que você precisa para viver melhor.</h1>
+      <p>Atendimento especializado em São Paulo e online para todo o Brasil.</p>
+      <button>
+        <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M12 0C5.373 0 0 5.373 0 12c0 2.387.66 4.611 1.805 6.505L0 24l5.495-1.805A11.925 11.925 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a10.937 10.937 0 01-5.708-1.653l-.365-.216-3.385 1.11 1.11-3.384-.216-.364A10.948 10.948 0 012 12c0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10zm-1.969-4.882c.198 0 .384-.03.555-.089l.241-.046.122-.056c.394-.192.788-.385 1.193-.578l.04-.019c.03-.014.077-.033.133-.057.103-.044.21-.088.318-.127l.063-.022c.165-.056.322-.094.488-.113.34-.038.565-.257.586-.535.068-.867.512-1.2.92-1.683.092-.11.288-.317.327-.186.094.308.807 1.502.925 1.777l.033.073c.213.489.319.856.377 1.03.076.23.15.454.226.678.074.225.288.352.567.352h.65c.346 0 .5-.3.537-.525l.003-.022c.015-.068.005-.247-.03-.399-.082-.312-.186-.543-.21-.615l-.034-.064-.893-1.82.066-.025c.23-.087.429-.173.612-.263.257-.122.483-.24.672-.377.144-.104.297-.187.459-.276.13-.066.255-.161.283-.322.056-.294.145-.469-.124-.746-.192-.198-.394-.309-.606-.343C12.379 7.01 10.603 7 9.225 7H6.979v-.965c0-.347-.193-.347-.387 0l-1.923 2.668c-.155.217-.219.469.06.526.297.062.571-.053.782-.233l1.841-1.569V8.812h-.877v-.808c.667.015 1.761.092 2.408.091.153-.001.323-.002.502-.003.086 0 .291.001.445.004.189.004.444.018.762.039.487.038.947.08 1.378.128.694.081 1.296.168 2.167.579-.032-.014-.086-.034-.162-.047-.223-.035-.414-.002-.567.487zm1.44 5.365A9.934 9.934 0 0111 12a9.934 9.934 0 011.471-4.314c.95.184 1.888.663 2.504 1.41.527.64 1.126 1.617 1.371 2.32l-.064.116c-.155-.066-.304-.148-.478-.216a1.338 1.338 0 00-.66-.145c-.569 0-1.114.212-1.548.586-.335.11-.687.281-.964.517-.377.33-.694.837-.017 1.037.052.127.112.251.174.375.236.46.432.844.645 1.055.23.221.44.344.647.344h.065c.414 0 .501-.126.514-.148a13.665 13.665 0 00-.349-.692 9.936 9.936 0 003.641-4.351 10.976 10.976 0 00-1.347-.56c-.393-.156-.697-.264-.846-.335-.084-.038-.267-.118-.6-.017-.205.051-.449.172-.638.476-.206.319-.47.547-.813.812-.629.5-.911.825-.903 1.034.003.061-.02.161-.099.292-.013.02-.066.111-.184.128-.032.004-.107-.006-.176-.024a6.531 6.531 0 01-.545-.212z" fill="#FFF"/>
+        </svg>
+        Começar Conversa
+      </button>
+    </div>
+    <div class="hero-image"></div>
+  </section>
+
+  <section class="dores-especialidades">
+    <h2>Dores e Especialidades</h2>
+    <div class="specialty-cards">
+      <div class="card">
+        <h3>01 · Ansiedade</h3>
+        <p>Aquele aperto no peito sem saber o porquê?</p>
+        <p>"Eu não consigo relaxar e estou sempre ansioso."</p>
+        <p>→ Sinto-me mais leve e com controle sobre meus pensamentos.</p>
       </div>
-      <div class="placeholder-foto">
-        <span>Foto profissional</span>
+      <div class="card">
+        <h3>02 · Depressão</h3>
+        <p>A falta de energia e vontade de fazer as coisas?</p>
+        <p>"Eu me sinto sem esperança e desmotivado."</p>
+        <p>→ Descobri alegria nas pequenas coisas do dia a dia.</p>
+      </div>
+      <div class="card">
+        <h3>03 · Relacionamentos</h3>
+        <p>Os conflitos que parecem nunca ter fim?</p>
+        <p>"Eu não consigo me comunicar bem e isso causa brigas constantes."</p>
+        <p>→ Aprendi a entender e respeitar melhor o outro.</p>
       </div>
     </div>
   </section>
 
-  <!-- Additional sections (bloco_2, bloco_3, etc.) would be added here following a similar pattern -->
-
   <footer>
-    <!-- Footer content here -->
+    <p>Ana Clara Oliveira · CRP 06/123456</p>
+    <div class="social-links">
+      <a href="https://instagram.com/anaclara.psi" target="_blank">Instagram</a>
+      <a href="mailto:contato@anaclarapsi.com.br">Email</a>
+    </div>
+    <p>Rua dos Pinheiros, 1234 - Conjunto 56</p>
+    <p>&copy; 2023 Ana Clara Oliveira · CRP 06/123456</p>
+    <a href="#">Política de Privacidade</a>
   </footer>
 
+  <div class="floating-whatsapp">
+    <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#FFF" d="M20.52 3.48A11.401 11.401 0 0012 .999C5.691.999 1 5.69 1 12a11.44 11.44 0 002.403 7.155L1 23l4.808-2.714A11.015 11.015 0 0012 23c6.309 0 11-4.691 11-11 0-3.033-1.159-5.854-3.48-8.32ZM12 21a9.92 9.92 0 01-5.16-1.513l-.468-.278L3 22l1.786-5.628-.277-.467A9.993 9.993 0 012 12c0-5.309 4.692-10 10-10s10 4.692 10 10-4.691 9.999-10 10Zm1.177-13.933c-.476.066-.928.156-1.372.322-.283.105-.567.21-.86.326l-.51-.51c-.863-.863-1.726-1.737-2.592-2.598-.204-.207-.405-.412-.612-.614-.959-.964-1.453-.724-2.183.014-.131.13-.252.264-.378.38-.558.562-.81 1.376-.923 2.22-.073.521-.14 1.03-.184 1.548-.09 1.098.055 2.146.287 3.171.634 1.849 1.816 3.262 3.614 4.199.657.324 1.36.553 2.094.612l.173.017c1.004.112 2.07-.046 3.027-.345.124-.038.246-.082.368-.135.22-.173.18 1.91.634 1.764.675-.215.985-.915 1.208-1.479.083-.2.159-.402.277-.595.808-.872 1.145-183.695-1.173-2.548-.094-.305-.192-.61-.287-.915a5.517 5.517 0 00-.982-.85c-.317-.187-.677-.277-1.053-.226-.06-1.093-.852-2.098-1.934-2.527a3.227 3.227 0 00-1.16-.08Z"/>
+    </svg>
+  </div>
+
   <script>
-    // JavaScript for interactions and animations
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.hero, .dores-especialidades').forEach(section => {
+      observer.observe(section);
+    });
   </script>
 </body>
-
 </html>
 ```
