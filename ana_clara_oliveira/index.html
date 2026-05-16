@@ -1,1 +1,457 @@
-.tmp/last_generated.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ana Clara Psicologia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    :root {
+        --fundo: #F8F5F1;
+        --superficie: #FFFFFF;
+        --primaria: #4E3B31;
+        --destaque: #A88F6A;
+        --texto-principal: #2D241E;
+        --texto-secundario: #6B5E54;
+        --font-titulo: 'Playfair Display', serif;
+        --font-corpo: 'Inter', sans-serif;
+    }
+    
+    /* ============================================================
+   CSS BASE PREMIUM V2 — "BOUTIQUE/MAGAZINE STYLE"
+   Inspirado em designs de alta conversão para Psicólogas
+   ============================================================ */
+
+:root {
+  --fundo: #F8F5F1; /* Creme sofisticado */
+  --superficie: #FFFFFF;
+  --primaria: #4E3B31; /* Marrom profundo */
+  --destaque: #A88F6A; /* Dourado suave/Bronze */
+  --texto-principal: #2D241E;
+  --texto-secundario: #6B5E54;
+  --font-titulo: 'Playfair Display', serif;
+  --font-corpo: 'Inter', sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { 
+  font-family: var(--font-corpo), sans-serif; 
+  background-color: var(--fundo); 
+  color: var(--texto-principal);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* --- BACKGROUND DECOR --- */
+body::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(168, 143, 106, 0.05) 0%, rgba(248, 245, 241, 0) 70%);
+  z-index: -1;
+  border-radius: 50%;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+/* --- NAV --- */
+.nav-principal {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4rem;
+  background: transparent;
+}
+.nav-logo { font-family: var(--font-titulo); font-size: 1.4rem; font-weight: 700; color: var(--primaria); }
+.nav-logo span { font-weight: 400; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; margin-left: 10px; color: var(--destaque); }
+.nav-links { display: flex; gap: 2.5rem; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--texto-secundario); }
+.nav-cta-wpp {
+  background: var(--primaria);
+  color: #fff !important;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+}
+
+/* --- HERO --- */
+.hero { padding: 4rem 0 0; min-height: 85vh; display: flex; align-items: center; }
+.hero-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center; }
+
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--destaque);
+  margin-bottom: 2rem;
+}
+.hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--destaque); }
+
+.hero h1 {
+  font-family: var(--font-titulo);
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  color: var(--texto-principal);
+  margin-bottom: 2rem;
+}
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--destaque); }
+
+.hero-description {
+  font-size: 1.15rem;
+  color: var(--texto-secundario);
+  max-width: 500px;
+  margin-bottom: 3rem;
+}
+
+.hero-actions { display: flex; align-items: center; gap: 2rem; }
+.btn-main {
+  background: #1e1b18; /* Quase preto */
+  color: #fff;
+  padding: 1.2rem 2.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.btn-link { color: var(--texto-secundario); font-weight: 500; border-bottom: 1px solid var(--destaque); }
+
+/* --- HERO PHOTO COMPOSITION --- */
+.hero-photo-wrapper { position: relative; }
+.hero-photo-main {
+  width: 100%;
+  aspect-ratio: 0.9;
+  background: #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+}
+.badge-top {
+  position: absolute;
+  top: 30px;
+  left: -20px;
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(10px);
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transform: rotate(-5deg);
+}
+.badge-bottom {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 15px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+.badge-bottom span { display: block; font-size: 0.6rem; text-transform: uppercase; color: var(--destaque); font-weight: 700; }
+.badge-bottom strong { display: block; font-size: 0.9rem; font-family: var(--font-titulo); color: var(--primaria); }
+
+/* --- HERO STATS BAR --- */
+.hero-footer-bar {
+  margin-top: 5rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  display: flex;
+  gap: 3rem;
+}
+.footer-stat { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--texto-secundario); display: flex; align-items: center; gap: 10px; }
+.footer-stat em { font-style: italic; color: var(--texto-principal); font-weight: 600; }
+.footer-stat::after { content: '•'; margin-left: 2rem; opacity: 0.3; }
+.footer-stat:last-child::after { display: none; }
+
+/* --- SEÇÕES --- */
+section { padding: 120px 0; }
+.section-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--destaque); margin-bottom: 1rem; display: block; }
+.section-title { font-family: var(--font-titulo); font-size: 3rem; margin-bottom: 3rem; }
+
+/* --- CARDS DORES --- */
+.dores-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+.card-dor {
+  background: #fff;
+  padding: 3rem 2rem;
+  border-radius: 20px;
+  transition: transform 0.3s;
+}
+.card-dor:hover { transform: translateY(-10px); }
+.card-dor h3 { font-family: var(--font-titulo); font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primaria); }
+.card-dor p { font-size: 1rem; color: var(--texto-secundario); }
+
+/* --- WHATSAPP FLOAT --- */
+.wpp-float {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #25D366;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(37,211,102,0.3);
+  z-index: 999;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 1024px) {
+  .hero-grid { grid-template-columns: 1fr; text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-actions { justify-content: center; }
+  .hero-footer-bar { flex-direction: column; gap: 1rem; align-items: center; }
+  .footer-stat::after { display: none; }
+  .dores-grid { grid-template-columns: 1fr; }
+}
+
+    </style>
+</head>
+<body>
+    <nav class="nav-principal">
+  <div class="container nav-container">
+    <a href="#top" class="nav-logo">Ana Clara Oliveira</a>
+    <button class="nav-toggle" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="#especialidades">Especialidades</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#contato" class="nav-cta">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+          <path d="M11.994 0C5.373 0 0 5.373 0 11.994c0 2.117.556 4.103 1.523 5.823L.057 23.939l6.262-1.643A11.933 11.933 0 0 0 11.994 24C18.615 24 24 18.627 24 12.006 24 5.374 18.615 0 11.994 0zm.012 21.818a9.823 9.823 0 0 1-5.011-1.371l-.36-.213-3.722.977.993-3.63-.235-.373a9.837 9.837 0 0 1-1.507-5.213c0-5.431 4.42-9.851 9.854-9.851 5.432 0 9.849 4.42 9.849 9.851-.001 5.432-4.419 9.823-9.861 9.823z"/>
+        </svg>
+        Agendar conversa
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-grid">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Psicóloga Clínica · Pinheiros, São Paulo</span>
+      <h1>Encontre o equilíbrio emocional que você precisa para viver melhor. <em>Ana Clara Psicologia</em></h1>
+      <p class="hero-description">Atendimento especializado em São Paulo e online para todo o Brasil.</p>
+      <div class="hero-actions">
+        <a class="btn-main" href="https://wa.me/5511999999999">Agendar Sessão</a>
+        <a class="btn-link" href="#especialidades">Conhecer o trabalho</a>
+      </div>
+      <div class="hero-footer-bar">
+        <div class="footer-stat"><em>Sessões de 50 minutos</em></div>
+      </div>
+    </div>
+    <div class="hero-photo-wrapper">
+      <div class="badge-top">_</div>
+      <div class="hero-photo-main">_</div>
+      <div class="badge-bottom"><span>CRP</span><strong>06/123456</strong></div>
+    </div>
+  </div>
+</header>
+
+<footer class="rodape">
+  <div class="container">
+    <div class="rodape-grid">
+      <div class="rodape-coluna">
+        <h4>Ana Clara Oliveira</h4>
+        <p>Psicóloga Clínica · CRP 06/123456</p>
+        <p>Abordagem: Terapia Cognitivo-Comportamental (TCC)</p>
+      </div>
+      <div class="rodape-coluna">
+        <h4>Contato</h4>
+        <ul>
+          <li>
+            <a href="https://wa.me/5511999999999">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path d="M11.994 0C5.373 0 0 5.373 0 11.994c0 2.117.556 4.103 1.523 5.823L.057 23.939l6.262-1.643A11.933 11.933 0 0 0 11.994 24C18.615 24 24 18.627 24 12.006 24 5.374 18.615 0 11.994 0zm.012 21.818a9.823 9.823 0 0 1-5.011-1.371l-.36-.213-3.722.977.993-3.63-.235-.373a9.837 9.837 0 0 1-1.507-5.213c0-5.431 4.42-9.851 9.854-9.851 5.432 0 9.849 4.42 9.849 9.851-.001 5.432-4.419 9.823-9.861 9.823z"/>
+              </svg>
+              +55 11 99999-9999
+            </a>
+          </li>
+          <li>
+            <a href="mailto:contato@anaclarapsi.com.br">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg>
+              contato@anaclarapsi.com.br
+            </a>
+          </li>
+          <li>
+            <a href="https://instagram.com/anaclara.psi" target="_blank">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+              </svg>
+              @anaclara.psi
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="rodape-coluna">
+        <h4>Consultório</h4>
+        <p>Rua dos Pinheiros, 1234 - Conjunto 56, Pinheiros, São Paulo</p>
+        <p>Atendimento presencial e online.</p>
+      </div>
+    </div>
+    <div class="rodape-bottom">
+      <p>© 2026 Ana Clara Oliveira · CRP 06/123456. Todos os direitos reservados.</p>
+      <button onclick="document.getElementById('modal-privacidade').style.display='flex'" class="link-privacidade">Política de Privacidade</button>
+    </div>
+  </div>
+</footer>
+
+<div id="modal-privacidade" class="modal-overlay" style="display:none;">
+  <div class="modal-caixa">
+    <h3>Política de Privacidade</h3>
+    <p>Seus dados enviados via formulário ou WhatsApp são utilizados exclusivamente para o agendamento de consultas e mantidos sob sigilo profissional, conforme o Código de Ética do Psicólogo e a LGPD.</p>
+    <button onclick="document.getElementById('modal-privacidade').style.display='none'" class="btn btn-primary">Fechar</button>
+  </div>
+</div>
+    <main>
+        <section class="secao-dores">
+  <div class="container">
+    <div class="dores-grid">
+      <div class="card-dor">
+        <h3>Ansiedade e Estresse</h3>
+        <p>Aprenda a gerenciar melhor seus níveis de ansiedade e estresse com estratégias eficazes.</p>
+      </div>
+      <div class="card-dor">
+        <h3>Depressão</h3>
+        <p>Encontre caminhos para lidar com a tristeza profunda e retomar a motivação.</p>
+      </div>
+      <div class="card-dor">
+        <h3>Relacionamentos</h3>
+        <p>Melhore suas conexões interpessoais e viva relacionamentos mais saudáveis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao-sobre">
+  <div class="container sobre-grid">
+    <div class="sobre-texto">
+      <h2>Sobre Ana Clara Oliveira</h2>
+      <p>Psicóloga com 10 anos de experiência clínica, focada em ajudar adultos a encontrarem equilíbrio emocional através da TCC.</p>
+      <ul class="formacao-lista">
+        <li>Graduação em Psicologia pela USP</li>
+        <li>Especialização em TCC pelo IPq-HCFMUSP</li>
+      </ul>
+      <span class="crp-badge">CRP 06/123456</span>
+    </div>
+  </div>
+</section>
+
+<section class="secao-processo">
+  <div class="container">
+    <div class="passos-grid">
+      <div class="passo">
+        <h3>Passo 1: Agendamento</h3>
+        <p>Inicie entrando em contato para marcarmos um horário.</p>
+      </div>
+      <div class="passo">
+        <h3>Passo 2: Avaliação</h3>
+        <p>Na primeira sessão, vamos entender suas necessidades e objetivos.</p>
+      </div>
+      <div class="passo">
+        <h3>Passo 3: Sessões Regulares</h3>
+        <p>Trabalharemos juntos semanalmente nas metas estabelecidas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="secao-palavras">
+  <div class="container">
+    <div class="palavras-grid">
+      <div class="palavra-card">
+        <p>"A terapia me trouxe clareza sobre meus sentimentos e direção na vida."</p>
+        <span>— Cliente satisfeito</span>
+      </div>
+      <div class="palavra-card">
+        <p>"Encontrei um espaço onde sou ouvido e respeitado. Recomendo."</p>
+        <span>— Cliente satisfeito</span>
+      </div>
+      <div class="palavra-card">
+        <p>"A paciência e profissionalismo durante o processo foram essenciais."</p>
+        <span>— Cliente satisfeito</span>
+      </div>
+    </div>
+  </div>
+</section>
+    </main>
+    <footer class="rodape">
+    <div class="rodape-grid">
+        <div class="rodape-coluna">
+            <h3>Contato</h3>
+            <p>Email: <a href="mailto:contato@anaclarapsi.com.br">contato@anaclarapsi.com.br</a></p>
+            <p>WhatsApp:
+                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">5511999999999</a>
+            </p>
+            <p>Endereço: Rua dos Pinheiros, 1234 - Conjunto 56, Pinheiros, São Paulo</p>
+        </div>
+        <div class="rodape-coluna">
+            <h3>Siga-me</h3>
+            <p>Instagram: <a href="https://instagram.com/anaclara.psi" target="_blank"
+                    rel="noopener noreferrer">@anaclara.psi</a></p>
+        </div>
+        <div class="rodape-coluna">
+            <h3>Sobre</h3>
+            <p>Ana Clara Oliveira - CRP 06/123456</p>
+            <p>Psicóloga com 10 anos de experiência clínica, focada em ajudar adultos a encontrarem equilíbrio emocional
+                através da TCC.</p>
+        </div>
+    </div>
+</footer>
+
+<a href="https://wa.me/5511999999999" class="wpp-float" target="_blank" rel="noopener noreferrer">
+    <img src="https://image-url.com/whatsapp-icon.png" alt="WhatsApp" />
+</a>
+
+<div id="modal-conversa-gratuita" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Conversa Gratuita</h2>
+        <p>Agende uma conversa gratuita para esclarecer suas dúvidas e entender como posso ajudar você em sua jornada
+            pessoal.</p>
+        <a href="https://wa.me/5511999999999" class="button">Agendar Agora</a>
+    </div>
+</div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav-principal');
+            if (window.scrollY > 50) nav.classList.add('scroll');
+            else nav.classList.remove('scroll');
+        });
+    });
+    </script>
+</body>
+</html>
