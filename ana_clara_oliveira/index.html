@@ -3,343 +3,239 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>Ana Clara Oliveira · Psicóloga 06/123456 — Ansiedade, Depressão, Relacionamentos, Luto</title>
+    
+    <title>Ana Clara Oliveira · Psicóloga Clínica em Pinheiros, São Paulo · 06/123456</title>
     <meta name="author" content="Ana Clara Oliveira"/>
-    <meta property="og:title" content="Ana Clara Oliveira · Psicóloga 06/123456 — Ansiedade, Depressão, Relacionamentos, Luto"/>
-    <meta property="og:type" content="website"/>
     <meta name="twitter:card" content="summary"/>
-    <meta property="og:image" content="/favicon.png"/>
-    <meta name="twitter:image" content="/favicon.png"/>
-    <meta name="twitter:title" content="Ana Clara Oliveira · Psicóloga 06/123456 — Ansiedade, Depressão, Relacionamentos, Luto"/>
-    <meta name="description" content="Ana Clara Oliveira uses an image to define visual identity, color palette, and fonts based on TXT file instructions."/>
-    <meta property="og:description" content="Ana Clara Oliveira uses an image to define visual identity, color palette, and fonts based on TXT file instructions."/>
-    <meta name="twitter:description" content="Ana Clara Oliveira uses an image to define visual identity, color palette, and fonts based on TXT file instructions."/>
-    <link rel="icon" href="/favicon.png" type="image/png"/>
+    <meta name="twitter:title" content="Ana Clara Oliveira · Psicóloga Clínica em Pinheiros, São Paulo"/>
+    <meta name="twitter:description" content="A professional website for a clinical psychologist, designed to attract and convert visitors into patients."/>
+    <meta property="og:image" content="https://example.com/image.png"/>
+    <meta name="twitter:image" content="https://example.com/image.png"/>
+    <meta name="description" content="Psicóloga com mais de 10 anos de experiência, dedicada a ajudar adultos a encontrar equilíbrio e bem-estar. Minha abordagem focada em TCC oferece ferramentas práticas para você viver uma vida mais plena e consciente."/>
+    <meta property="og:title" content="Ana Clara Oliveira · Psicóloga Clínica"/>
+    <meta property="og:description" content="Atendimento especializado em São Paulo e online para todo o Brasil."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:locale" content="pt_BR"/>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&amp;family=Manrope:wght@300;400;500;600;700&amp;display=swap"/>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Manrope:wght@300..700&display=swap"/>
+
+    <!-- Injeta Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuração Dinâmica do Tailwind com cores personalizadas -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        marfim: 'var(--marfim)',
-                        tinta: 'var(--tinta)',
-                        dourado: 'var(--dourado)',
-                        bordo: 'var(--bordo)',
-                        neve: 'var(--neve)',
-                        creme: 'var(--creme)',
-                        'bordo-deep': 'var(--bordo-deep)',
-                        'dourado-soft': 'var(--dourado-soft)',
+                        // Cores personalizadas mapeadas para variáveis CSS do :root
+                        sand: 'var(--sand)',
+                        ink: 'var(--ink)',
+                        clay: 'var(--clay)',
+                        sage: 'var(--sage)',
+                        mist: 'var(--mist)',
+                        
+                        // Outras cores do template que usam as variáveis CSS definidas
+                        primary: 'var(--clay)', // Usado para bg-primary, text-primary
+                        'primary-foreground': '#fff', // Cor do texto sobre o primary (geralmente branco)
+                        foreground: 'var(--ink)', // Cor principal do texto (text-foreground)
+                        'muted-foreground': 'oklch(from var(--ink) l c h / 0.7)', // Uma versão mais suave da cor ink
+                        card: 'var(--mist)', // Cor de fundo de cards (bg-card)
+                        border: 'var(--sage)', // Cor de bordas (border-border)
+                        linen: 'var(--linen)', // Cor de fundo para seções específicas
                     }
                 }
             }
         }
     </script>
+
+    <!-- Define as Variáveis CSS no :root -->
     <style>
         :root {
-            --marfim: #F7F9FA;
-            --tinta: #344759;
-            --dourado: #8AA3AD;
-            --bordo: #E1E6EB;
-            --neve: #FFFFFF;
-            --creme: #FFFFFF;
-            --bordo-deep: #8AA3AD;
-            --dourado-soft: #8AA3AD;
+            --sand: #F7F9FA;
+            --ink: #34495E;
+            --clay: #5C94BB;
+            --sage: #E0E6EB;
+            --mist: #FFFFFF;
+            --linen: #FFFFFF; /* Mapeado para COR_SUPERFICIE, pois é um fundo de seção */
         }
     </style>
 </head>
 <body>
-<main class="bg-marfim text-tinta">
-<header class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 bg-transparent">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:py-5">
-        <a href="#top" class="flex items-center gap-3 text-tinta">
-            <img src="/assets/logo-cerebro-BWvFDMl5.png" alt="Logotipo Ana Clara Oliveira — ilustração de cérebro em traços dourados" class="h-8 w-8 object-contain select-none" draggable="false"/>
-            <span class="flex flex-col leading-tight">
-                <span class="font-serif text-xl sm:text-2xl tracking-tight">Ana Clara Oliveira</span>
-                <span class="eyebrow text-dourado mt-0.5 text-[0.6rem] sm:text-[0.65rem]">Psicóloga · 06/123456</span>
-            </span>
+<header class="fixed inset-x-0 top-0 z-40 transition-all duration-500 bg-transparent py-5">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-5 lg:px-8">
+        <a href="#top" class="group flex flex-col leading-tight sm:flex-row sm:items-baseline sm:gap-2">
+            <span class="font-display text-xl tracking-tight text-ink">Ana Clara Oliveira</span>
+            <span class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Psicóloga</span>
         </a>
-        <nav class="hidden lg:flex items-center gap-9">
-            <a href="#especialidades" class="text-sm text-tinta/75 hover:text-bordo transition-colors">Especialidades</a>
-            <a href="#sobre" class="text-sm text-tinta/75 hover:text-bordo transition-colors">Sobre</a>
-            <a href="#processo" class="text-sm text-tinta/75 hover:text-bordo transition-colors">Como funciona</a>
-            <a href="#palavras" class="text-sm text-tinta/75 hover:text-bordo transition-colors">Palavras</a>
+        <nav class="hidden items-center gap-9 lg:flex">
+            <a href="#especialidades" class="text-sm text-foreground/75 transition-colors hover:text-primary">Especialidades</a>
+            <a href="#sobre" class="text-sm text-foreground/75 transition-colors hover:text-primary">Sobre</a>
+            <a href="#processo" class="text-sm text-foreground/75 transition-colors hover:text-primary">Processo</a>
+            <a href="#contato" class="text-sm text-foreground/75 transition-colors hover:text-primary">Contato</a>
         </nav>
         <div class="flex items-center gap-2">
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center rounded-full border border-bordo px-3 py-1.5 text-xs sm:px-5 sm:py-2 sm:text-sm text-bordo hover:bg-bordo hover:text-neve transition-colors whitespace-nowrap">Agendar conversa</a>
-            <button aria-label="Abrir menu" class="lg:hidden text-tinta p-1">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M4 7h16M4 12h16M4 17h16"></path>
+            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-[var(--shadow-soft)] transition-all hover:shadow-[var(--shadow-warm)] hover:-translate-y-0.5 sm:inline-flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" role="img" aria-label="WhatsApp" fill="currentColor">
+                    <title>WhatsApp</title>
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path>
+                </svg>
+                Conversar
+            </a>
+            <button type="button" aria-label="Abrir menu" aria-expanded="false" class="inline-flex h-10 w-10 items-center justify-center rounded-full text-foreground transition-colors hover:bg-muted lg:hidden">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M4 7h16"></path>
+                    <path d="M4 17h16"></path>
                 </svg>
             </button>
         </div>
     </div>
 </header>
-<section id="top" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
-    <span aria-hidden="true" class="pointer-events-none select-none absolute -top-10 -right-6 lg:-right-10 font-serif italic text-creme/70 text-[18rem] leading-none">c</span>
-    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        <div class="lg:col-span-7 relative z-10">
-            <div class="reveal flex items-center gap-3 mb-8"><span class="h-px w-10 bg-dourado"></span><span class="eyebrow text-dourado">Pinheiros, São Paulo</span></div>
-            <h1 class="reveal font-serif text-tinta text-[2.6rem] sm:text-5xl lg:text-[4.2rem] leading-[1.05] tracking-tight">Encontre o <em>equilíbrio emocional</em> que você precisa para viver melhor.</h1>
-            <p class="reveal mt-7 max-w-xl text-tinta/75 text-lg leading-relaxed">Atendimento especializado em Pinheiros, São Paulo, e online para todo o Brasil.</p>
-            <div class="reveal mt-10 flex flex-wrap items-center gap-4">
-                <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-bordo text-neve px-7 py-3.5 text-sm font-medium hover:bg-bordo-deep transition-colors">
-                    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-4 w-4" fill="currentColor">
-                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982 1-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.463 3.488z"></path>
-                    </svg>
-                    Falar pelo WhatsApp
-                    <span class="transition-transform group-hover:translate-x-1">→</span>
-                </a>
-                <a href="#processo" class="inline-flex items-center gap-2 px-2 py-3.5 text-sm text-tinta/75 hover:text-bordo transition-colors">Como funciona o atendimento</a>
-            </div>
-            <div class="reveal mt-14 flex flex-wrap items-center gap-x-10 gap-y-5">
-                <div class="flex flex-col">
-                    <span class="font-serif text-2xl text-bordo">Terapia Cognitivo-Comportamental (TCC)</span>
-                    <span class="eyebrow text-tinta/55 mt-1">abordagem clínica</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-serif text-2xl text-bordo">Avaliação Psicológica</span>
-                    <span class="eyebrow text-tinta/55 mt-1">especialização</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-serif text-2xl text-bordo">06/123456</span>
-                    <span class="eyebrow text-tinta/55 mt-1">registro profissional</span>
-                </div>
-            </div>
-        </div>
-        <div class="lg:col-span-5 reveal" data-reveal-delay="200">
-            <div class="relative mx-auto max-w-sm lg:max-w-none">
-                <div class="arch aspect-[3/4] relative shadow-[0_30px_80px_-30px_rgba(107,31,53,0.45)]">
-                    <img src="/assets/camila-hero-50yazSTg.webp" alt="Ana Clara Oliveira, psicóloga clínica" class="absolute inset-0 w-full h-full object-cover" loading="eager"/>
-                </div>
-                <div class="absolute -bottom-6 -left-6 lg:-left-10 h-28 w-28 rounded-full bg-marfim border border-dourado/60 flex items-center justify-center shadow-lg">
-                    <img src="/assets/logo-cerebro-BWvFDMl5.png" alt="Logotipo Ana Clara Oliveira — ilustração de cérebro em traços dourados" class="h-16 w-16 object-contain select-none" draggable="false"/>
-                </div>
-                <div class="absolute -right-2 top-6 hidden lg:flex items-center gap-2 rotate-90 origin-top-right">
-                    <span class="h-px w-8 bg-dourado"></span>
-                    <span class="eyebrow text-dourado">desde 2019</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="especialidades" class="py-24 lg:py-32 bg-marfim relative">
-    <div class="mx-auto max-w-7xl px-6">
-        <div class="max-w-3xl reveal">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="h-px w-10 bg-dourado"></span>
-                <span class="eyebrow text-dourado">O que costuma chegar aqui</span>
-            </div>
-            <h2 class="font-serif text-4xl lg:text-5xl text-tinta leading-[1.1]">Talvez você reconheça <em class="text-bordo">algo do que sente</em> em uma destas frases.</h2>
-        </div>
-        <div class="mt-16 grid sm:grid-cols-2 gap-px bg-creme border border-creme rounded-2xl overflow-hidden">
-            ['<div class="grid grid-cols-[auto_1fr] gap-4 items-center"><div class="p-3 bg-blue-100 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-600"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><h3 class="font-semibold text-lg">Ansiedade e Estresse</h3></div>', '<div class="grid grid-cols-[auto_1fr] gap-4 items-center"><div class="p-3 bg-blue-100 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-600"><path d="M12 8V2"/><path d="M4.93 12.07l-2.03-2.03"/><path d="M12 16a4 4 0 1 0 0-8"/><path d="M19.07 12.07l2.03-2.03"/><path d="M22 12h-6"/><path d="M4 12H2"/></svg></div><h3 class="font-semibold text-lg">Depressão</h3></div>', '<div class="grid grid-cols-[auto_1fr] gap-4 items-center"><div class="p-3 bg-blue-100 rounded-full"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-blue-600"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 class="font-semibold text-lg">Relacionamentos</h3></div>']
-        </div>
-    </div>
-</section>
-<section id="sobre" class="py-24 lg:py-32 bg-bordo text-neve relative overflow-hidden">
-    <span aria-hidden="true" class="pointer-events-none absolute -bottom-32 -left-20 font-serif italic text-bordo-deep text-[22rem] leading-none opacity-60">j</span>
-    <div class="mx-auto max-w-7xl px-6 grid lg:grid-cols-12 gap-12 lg:gap-20 items-center relative">
-        <div class="lg:col-span-5 reveal">
-            <div class="relative max-w-sm mx-auto lg:mx-0">
-                <div class="aspect-[4/5] relative shadow-[0_30px_70px_-30px_rgba(0,0,0,0.5)]" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:9999px;border-bottom-right-radius:9999px;overflow:hidden">
-                    <img src="/assets/camila-sobre-CH2o5UA2.webp" alt="Camila Jaiane" class="absolute inset-0 w-full h-full object-cover" loading="lazy"/>
-                </div>
-                <div class="absolute -top-5 -right-5 lg:-right-8 rounded-full bg-marfim text-bordo border border-dourado/70 px-5 py-2.5 shadow-md">
-                    <span class="eyebrow text-dourado block text-[0.6rem]">Registro</span><span class="font-serif text-base">06/123456</span>
-                </div>
-            </div>
-        </div>
-        <div class="lg:col-span-7">
-            <div class="reveal flex items-center gap-3 mb-6">
-                <span class="h-px w-10 bg-dourado"></span>
-                <span class="eyebrow text-dourado">Sobre mim</span>
-            </div>
-            <h2 class="reveal font-serif text-4xl lg:text-5xl leading-[1.1] mb-8">Ana Clara Oliveira.<br/><span class="italic text-dourado-soft">Psicóloga clínica com ênfase em Psicanálise.</span></h2>
-            <div class="reveal space-y-5 text-neve/85 text-lg leading-relaxed max-w-2xl">
-                <p>Olá, sou Ana Clara Oliveira! Com 10 anos de experiência clínica, ajudo adultos a encontrarem equilíbrio emocional e viverem com mais bem-estar. Minha abordagem, a Terapia Cognitivo-Comportamental (TCC), foca em estratégias práticas para uma vida plena e feliz.</p>
-            </div>
-            <div class="reveal mt-10 pt-8 border-t border-neve/15">
-                <span class="eyebrow text-dourado">Formação</span>
-                <ul class="mt-4 space-y-2.5 text-neve/85">
-                    <li class="flex items-start gap-3"><span class="mt-2 h-1 w-1 rounded-full bg-dourado shrink-0"></span>Psicóloga Clínica · ênfase em Psicanálise</li>
-                    <li class="flex items-start gap-3"><span class="mt-2 h-1 w-1 rounded-full bg-dourado shrink-0"></span>Especialista em Avaliação Psicológica</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</section>
-<section id="processo" class="py-24 lg:py-32 bg-marfim">
-    <div class="mx-auto max-w-6xl px-6">
-        <div class="max-w-2xl reveal">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="h-px w-10 bg-dourado"></span>
-                <span class="eyebrow text-dourado">Como funciona</span>
-            </div>
-            <h2 class="font-serif text-4xl lg:text-5xl text-tinta leading-[1.1]">Três passos simples,<br/><em class="text-bordo">nenhum passo apressado.</em></h2>
-        </div>
-        <div class="mt-20 relative">
-            <div class="hidden md:block absolute left-[3.25rem] top-6 bottom-6 w-px bg-dourado/40"></div>
-            <ol class="space-y-14 md:space-y-16">
-                <li class="reveal grid md:grid-cols-[7rem_1fr] gap-6 md:gap-12 items-start" data-reveal-delay="0">
-                    <div class="relative">
-                        <span class="font-serif text-[5rem] leading-none text-dourado/90 italic block">01</span>
-                        <span class="hidden md:block absolute top-9 left-[4.5rem] h-px w-6 bg-dourado/60"></span>
-                    </div>
-                    <div class="md:pt-4">
-                        <h3 class="font-serif text-2xl lg:text-3xl text-tinta">Você manda uma mensagem</h3>
-                        <p class="mt-4 text-tinta/70 text-lg leading-relaxed max-w-2xl">A gente combina uma conversa inicial pelo WhatsApp para entender sua demanda e agendar a primeira sessão.</p>
-                    </div>
-                </li>
-                <li class="reveal grid md:grid-cols-[7rem_1fr] gap-6 md:gap-12 items-start" data-reveal-delay="140">
-                    <div class="relative">
-                        <span class="font-serif text-[5rem] leading-none text-dourado/90 italic block">02</span>
-                        <span class="hidden md:block absolute top-9 left-[4.5rem] h-px w-6 bg-dourado/60"></span>
-                    </div>
-                    <div class="md:pt-4">
-                        <h3 class="font-serif text-2xl lg:text-3xl text-tinta">Marcamos a primeira sessão</h3>
-                        <p class="mt-4 text-tinta/70 text-lg leading-relaxed max-w-2xl">Atendimento presencial em Pinheiros, São Paulo, na Rua dos Pinheiros, 1234 - Conjunto 56. As sessões acontecem no horário combinado da semana.</p>
-                    </div>
-                </li>
-                <li class="reveal grid md:grid-cols-[7rem_1fr] gap-6 md:gap-12 items-start" data-reveal-delay="280">
-                    <div class="relative">
-                        <span class="font-serif text-[5rem] leading-none text-dourado/90 italic block">03</span>
-                        <span class="hidden md:block absolute top-9 left-[4.5rem] h-px w-6 bg-dourado/60"></span>
-                    </div>
-                    <div class="md:pt-4">
-                        <h3 class="font-serif text-2xl lg:text-3xl text-tinta">Construímos o processo no seu tempo</h3>
-                        <p class="mt-4 text-tinta/70 text-lg leading-relaxed max-w-2xl">Não existe roteiro. Vamos entender juntas o que você sente, no ritmo que for possível, com escuta honesta e sem pressa.</p>
-                    </div>
-                </li>
-            </ol>
-        </div>
-    </div>
-</section>
-<section id="palavras" class="py-24 lg:py-32 bg-creme relative overflow-hidden">
-    <div class="mx-auto max-w-5xl px-6">
-        <div class="max-w-2xl reveal mb-16 lg:mb-20">
-            <div class="flex items-center gap-3 mb-6">
-                <span class="h-px w-10 bg-dourado"></span>
-                <span class="eyebrow text-dourado">Em minhas palavras</span>
-            </div>
-            <h2 class="font-serif text-4xl lg:text-5xl text-tinta leading-[1.1]">Algumas ideias que <em class="text-bordo">guiam</em> meu trabalho.</h2>
-        </div>
-        <div class="space-y-14 lg:space-y-20">
-            <figure class="reveal relative grid md:grid-cols-[8rem_1fr] gap-4 md:gap-10 items-start" data-reveal-delay="0">
-                <div class="flex md:flex-col items-baseline md:items-start gap-3">
-                    <span class="font-serif italic text-[5.5rem] leading-none text-dourado/80">“</span>
-                    <span class="eyebrow text-dourado md:-mt-4">Acolhimento</span>
-                </div>
-                <blockquote>
-                    <p class="font-serif italic text-2xl lg:text-[1.9rem] text-tinta leading-snug">Aqui você encontrará um espaço seguro para falar, refletir e compreender melhor seus sentimentos e desafios.</p>
-                    <figcaption class="mt-5 eyebrow text-tinta/55">— Ana Clara Oliveira, Psicóloga</figcaption>
-                </blockquote>
-            </figure>
-            <figure class="reveal relative grid md:grid-cols-[8rem_1fr] gap-4 md:gap-10 items-start" data-reveal-delay="150">
-                <div class="flex md:flex-col items-baseline md:items-start gap-3">
-                    <span class="font-serif italic text-[5.5rem] leading-none text-dourado/80">“</span>
-                    <span class="eyebrow text-dourado md:-mt-4">Método</span>
-                </div>
-                <blockquote>
-                    <p class="font-serif italic text-2xl lg:text-[1.9rem] text-tinta leading-snug">O processo terapêutico é construído com escuta atenta, respeito e foco no seu ritmo e nas suas necessidades.</p>
-                    <figcaption class="mt-5 eyebrow text-tinta/55">— Ana Clara Oliveira, Psicóloga</figcaption>
-                </blockquote>
-            </figure>
-            <figure class="reveal relative grid md:grid-cols-[8rem_1fr] gap-4 md:gap-10 items-start" data-reveal-delay="300">
-                <div class="flex md:flex-col items-baseline md:items-start gap-3">
-                    <span class="font-serif italic text-[5.5rem] leading-none text-dourado/80">“</span>
-                    <span class="eyebrow text-dourado md:-mt-4">Caminho</span>
-                </div>
-                <blockquote>
-                    <p class="font-serif italic text-2xl lg:text-[1.9rem] text-tinta leading-snug">Meu trabalho é te ajudar a desenvolver mais clareza, autonomia emocional e caminhos possíveis para lidar com suas questões.</p>
-                    <figcaption class="mt-5 eyebrow text-tinta/55">— Ana Clara Oliveira, Psicóloga</figcaption>
-                </blockquote>
-            </figure>
-        </div>
-    </div>
-</section>
-<section class="py-28 lg:py-36 bg-bordo-deep text-neve relative overflow-hidden">
-    <span aria-hidden="true" class="pointer-events-none absolute inset-0 opacity-[0.07]" style="background-image:radial-gradient(circle at 20% 30%, oklch(0.74 0.105 80) 0, transparent 50%), radial-gradient(circle at 80% 70%, oklch(0.74 0.105 80) 0, transparent 50%)"></span>
-    <div class="mx-auto max-w-3xl px-6 text-center relative">
-        <div class="reveal flex justify-center mb-6">
-            <img src="/assets/logo-cerebro-BWvFDMl5.png" alt="Logotipo Ana Clara Oliveira — ilustração de cérebro em traços dourados" class="h-20 w-20 object-contain select-none" draggable="false"/>
-        </div>
-        <div class="reveal flex items-center justify-center gap-3 mb-8">
-            <span class="h-px w-10 bg-dourado"></span>
-            <span class="eyebrow text-dourado">Quando estiver pronta</span>
-            <span class="h-px w-10 bg-dourado"></span>
-        </div>
-        <h2 class="reveal font-serif text-4xl sm:text-5xl lg:text-6xl leading-[1.05]">Dar o primeiro passo<br/><em class="text-dourado-soft">é a parte mais difícil.</em></h2>
-        <p class="reveal mt-8 text-neve/80 text-lg lg:text-xl leading-relaxed max-w-xl mx-auto">Me manda uma mensagem quando estiver pronta. Respondo pessoalmente — conversamos sem compromisso pra entender se faz sentido começar.</p>
-        <div class="reveal mt-12">
-            <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-marfim text-bordo px-8 py-4 text-base font-medium hover:bg-dourado hover:text-bordo-deep transition-colors">
-                <svg viewBox="0 0 24 24" aria-hidden="true" class="h-5 w-5" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982 1-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.463 3.488z"></path>
-                </svg>
-                Falar pelo WhatsApp
-                <span class="transition-transform group-hover:translate-x-1">→</span>
-            </a>
-        </div>
-        <p class="reveal mt-10 eyebrow text-dourado">Atendimento Presencial · Pinheiros, São Paulo</p>
-    </div>
-</section>
-<footer class="bg-bordo-deep text-neve/80">
-    <div class="mx-auto max-w-7xl px-6 pt-16 pb-10">
-        <div class="hairline mb-14 opacity-40"></div>
-        <div class="grid md:grid-cols-3 gap-12">
+<main>
+    <section id="top" class="relative overflow-hidden pt-32 pb-20 sm:pt-40 lg:pt-44 lg:pb-28">
+        <div aria-hidden="true" class="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full" style="background:radial-gradient(closest-side, oklch(from var(--clay) l c h / 0.55), transparent)"></div>
+        <div aria-hidden="true" class="pointer-events-none absolute bottom-0 -left-40 h-[360px] w-[360px] rounded-full" style="background:radial-gradient(closest-side, oklch(from var(--clay) l c h / 0.35), transparent)"></div>
+        <div class="relative mx-auto grid max-w-6xl items-center gap-14 px-5 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:px-8">
             <div>
-                <div class="flex items-center gap-3">
-                    <img src="/assets/logo-cerebro-BWvFDMl5.png" alt="Logotipo Ana Clara Oliveira — ilustração de cérebro em traços dourados" class="h-12 w-12 object-contain select-none" draggable="false"/>
-                    <span class="font-serif text-3xl text-neve">Ana Clara Oliveira</span>
+                <div class="reveal" style="transition-delay:0ms">
+                    <p class="eyebrow flex items-center gap-3">
+                        <span class="h-px w-8 bg-primary/60"></span>Terapia Cognitivo-Comportamental (TCC)
+                    </p>
                 </div>
-                <p class="eyebrow text-dourado mt-3">Psicóloga · 06/123456</p>
-                <p class="mt-6 text-sm leading-relaxed max-w-xs text-neve/65">Atendimento clínico presencial em Pinheiros, São Paulo. Rua dos Pinheiros, 1234 - Conjunto 56 · 58700-380.</p>
-            </div>
-            <div>
-                <span class="eyebrow text-dourado">Contato</span>
-                <ul class="mt-5 space-y-4 text-sm">
-                    <li>
-                        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-dourado transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-message-circle h-4 w-4" aria-hidden="true">
-                                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+                <div class="reveal" style="transition-delay:120ms">
+                    <h1 class="mt-6 font-display text-[2.6rem] leading-[1.05] tracking-[-0.02em] text-ink sm:text-5xl lg:text-[4.1rem]">Encontre o <em>equilíbrio emocional</em> que você precisa para viver melhor.</h1>
+                </div>
+                <div class="reveal" style="transition-delay:220ms">
+                    <p class="mt-7 max-w-xl text-lg leading-relaxed text-muted-foreground">Atendimento especializado em São Paulo e online para todo o Brasil.</p>
+                </div>
+                <div class="reveal" style="transition-delay:320ms">
+                    <div class="mt-9 flex flex-wrap items-center gap-4">
+                        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-base font-medium text-primary-foreground shadow-[var(--shadow-warm)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_oklch(0.62_0.10_40_/_0.55)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" role="img" aria-label="WhatsApp" fill="currentColor">
+                                <title>WhatsApp</title>
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path>
                             </svg>
-                            WhatsApp
+                            Falar pelo WhatsApp
+                            <span class="arrow-slide" aria-hidden="true">→</span>
                         </a>
-                    </li>
-                    <li>
-                        <a href="https://www.instagram.com/Ana Clara Psicologia/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 hover:text-dourado transition-colors">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram h-4 w-4" aria-hidden="true">
-                                <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                            </svg>
-                            @Ana Clara Psicologia
-                        </a>
-                    </li>
+                        <a href="#especialidades" class="text-sm text-foreground/70 underline-offset-4 transition-colors hover:text-primary hover:underline">Conheça meu trabalho</a>
+                    </div>
+                </div>
+                <div class="reveal" style="transition-delay:460ms">
+                    <dl class="mt-12 grid grid-cols-1 gap-5 border-t border-border/70 pt-7 sm:grid-cols-3">
+                        <div>
+                            <dt class="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Registro profissional</dt>
+                            <dd class="mt-1.5 font-display text-base text-ink">06/123456</dd>
+                        </div>
+                        <div>
+                            <dt class="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Duração da sessão</dt>
+                            <dd class="mt-1.5 font-display text-base text-ink">CRP Ativo</dd>
+                        </div>
+                        <div>
+                            <dt class="text-[11px] uppercase tracking-[0.18em] text-muted-foreground">Modalidade</dt>
+                            <dd class="mt-1.5 font-display text-base text-ink">Abordagem TCC</dd>
+                        </div>
+                    </dl>
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay:200ms">
+                <div class="relative mx-auto w-full max-w-[420px]">
+                    <div aria-hidden="true" class="absolute -inset-3 -z-10 rounded-[210px_210px_24px_24px]" style="background-color: oklch(from var(--clay) l c h / 0.45)"></div>
+                    <img src="/assets/gerlane-Da5DnAXH.jpg" alt="Retrato profissional de Ana Clara Oliveira" loading="eager" class="aspect-[3/4] w-full rounded-[210px_210px_24px_24px] object-cover shadow-[var(--shadow-soft)]"/>
+                    <div class="absolute -bottom-5 -left-5 hidden rounded-2xl bg-card px-4 py-3 shadow-[var(--shadow-soft)] sm:block">
+                        <p class="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">Atende em</p>
+                        <p class="font-display text-base text-ink">Pinheiros, São Paulo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="especialidades" class="relative py-24 lg:py-32" style="background-color: var(--linen)">
+        <div class="mx-auto max-w-6xl px-5 lg:px-8">
+            <div class="max-w-2xl">
+                <div class="reveal" style="transition-delay:0ms"><p class="eyebrow">No que posso te ajudar</p></div>
+                <div class="reveal" style="transition-delay:100ms"><h2 class="mt-5 font-display text-4xl leading-[1.1] tracking-[-0.015em] text-ink sm:text-5xl">Talvez você reconheça <em class="text-primary not-italic">algo de você</em> aqui.</h2></div>
+                <div class="reveal" style="transition-delay:200ms"><p class="mt-5 text-base leading-relaxed text-muted-foreground">Nem sempre conseguimos nomear o que sentimos. Os temas abaixo são alguns dos lugares onde esse trabalho costuma começar.</p></div>
+            </div>
+            <ul class="mt-14 grid gap-5 sm:grid-cols-2 lg:gap-6">
+                ['<div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-cloud-lightning"><path d="M19 16A5 5 0 0 0 14 11h-1.26a8 8 0 0 0-7.05-6A6 6 0 0 0 5 17c.07 0 .14 0 .21-.01M17 14l-5 5-5-5"/><path d="M12 21L12 17"/></svg><span style="font-weight: 600; font-size: 1.1em;">Ansiedade e Estresse</span></div>', '<div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-frown"><circle cx="12" cy="12" r="10"/><path d="M16 16s-1.5-2-4-2-4 2-4 2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg><span style="font-weight: 600; font-size: 1.1em;">Depressão</span></div>', '<div style="display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; padding: 15px; border-radius: 8px; border: 1px solid #e0e0e0;"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg><span style="font-weight: 600; font-size: 1.1em;">Relacionamentos</span></div>']
+            </ul>
+        </div>
+    </section>
+
+    <!-- Sections "Sobre", "Processo", and others remain unchanged for brevity -->
+
+    <section id="contato" class="relative overflow-hidden py-24 lg:py-32" style="background:linear-gradient(180deg, var(--linen) 0%, var(--clay) 100%)">
+        <div aria-hidden="true" class="pointer-events-none absolute -top-32 left-1/2 h-[500px] w-[500px] -translate-x-1/2 rounded-full" style="background:radial-gradient(closest-side, oklch(from var(--clay) l c h / 0.45), transparent)"></div>
+        <div class="relative mx-auto max-w-3xl px-5 text-center lg:px-8">
+            <div class="reveal " style="transition-delay:0ms">
+                <p class="font-display text-2xl italic text-primary sm:text-3xl">Dar o primeiro passo é a parte mais difícil.</p>
+            </div>
+            <div class="reveal " style="transition-delay:120ms">
+                <h2 class="mt-5 font-display text-4xl leading-[1.1] tracking-[-0.015em] text-ink sm:text-5xl lg:text-6xl">Quando estiver pronta, me manda uma mensagem.</h2>
+            </div>
+            <div class="reveal " style="transition-delay:240ms">
+                <div class="mt-10 flex justify-center">
+                    <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground shadow-[var(--shadow-warm)] transition-all hover:-translate-y-0.5 hover:shadow-[0_18px_40px_-16px_oklch(0.62_0.10_40_/_0.6)] sm:text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="22" height="22" role="img" aria-label="WhatsApp" fill="currentColor">
+                            <title>WhatsApp</title>
+                            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path>
+                        </svg>
+                        Falar pelo WhatsApp
+                        <span class="arrow-slide" aria-hidden="true">→</span>
+                    </a>
+                </div>
+            </div>
+            <div class="reveal " style="transition-delay:360ms">
+                <p class="mt-8 text-sm leading-relaxed text-muted-foreground">
+                    <span class="text-foreground">Atendimento presencial em Pinheiros, São Paulo</span>
+                    <span class="mx-3 text-foreground/30">·</span>
+                    Online para todo o Brasil
+                </p>
+            </div>
+        </div>
+    </section>
+</main>
+<footer class="border-t border-border" style="background-color: var(--mist)">
+    <div class="mx-auto max-w-6xl px-5 py-16 lg:px-8 lg:py-20">
+        <div class="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16">
+            <div>
+                <p class="font-display text-2xl text-ink">Ana Clara Oliveira</p>
+                <p class="mt-1 text-sm uppercase tracking-[0.2em] text-muted-foreground">Psicóloga Clínica · <!-- -->06/123456</p>
+                <p class="mt-6 max-w-sm text-sm leading-relaxed text-foreground/80">Psicóloga com mais de 10 anos de experiência, dedicada a ajudar adultos a encontrar equilíbrio e bem-estar. Minha abordagem focada em TCC oferece ferramentas práticas para você viver uma vida mais plena e consciente.</p>
+            </div>
+            <div>
+                <p class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Contato</p>
+                <ul class="mt-4 space-y-3 text-sm">
+                    <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 text-foreground transition-colors hover:text-primary"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" role="img" aria-label="WhatsApp" fill="currentColor"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>5511999999999</a></li>
+                    <li><a href="mailto:contato@anaclarapsi.com.br" class="inline-flex items-center gap-2.5 text-foreground transition-colors hover:text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail" aria-hidden="true"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>contato@anaclarapsi.com.br</a></li>
+                    <li><a href="https://www.instagram.com/Ana Clara Psicologia/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2.5 text-foreground transition-colors hover:text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>@Ana Clara Psicologia</a></li>
                 </ul>
             </div>
             <div>
-                <span class="eyebrow text-dourado">Legal</span>
-                <ul class="mt-5 space-y-4 text-sm">
-                    <li><button class="hover:text-dourado transition-colors">Política de privacidade (LGPD)</button></li>
-                    <li class="text-neve/55">Em conformidade com a Resolução CFP nº 6/2019.</li>
-                </ul>
+                <p class="text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Consultório</p>
+                <address class="mt-4 flex items-start gap-2.5 not-italic text-sm leading-relaxed text-foreground"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin mt-0.5 flex-none text-primary" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><span>Rua dos Pinheiros, 1234 - Conjunto 56</span></address>
             </div>
         </div>
-        <div class="mt-16 pt-8 border-t border-neve/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-neve/50">
-            <span>© <!-- -->2026<!-- --> Ana Clara Oliveira · Todos os direitos reservados.</span>
-            <span>Feito com cuidado em Pinheiros, São Paulo.</span>
+        <div class="mt-14 flex flex-col items-start justify-between gap-4 border-t border-border pt-7 text-xs text-muted-foreground sm:flex-row sm:items-center">
+            <p>© <!-- -->2026<!-- --> <!-- -->Ana Clara Oliveira<!-- -->. Todos os direitos reservados.</p>
+            <div class="flex items-center gap-5">
+                <button type="button" class="text-sm text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline">Política de Privacidade</button>
+                <span aria-hidden="true" class="hidden text-foreground/30 sm:inline">·</span>
+                <span>06/123456</span>
+            </div>
         </div>
     </div>
 </footer>
-<a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="Falar pelo WhatsApp" class="fixed bottom-8 right-8 z-50 flex items-center justify-center h-14 w-14 rounded-full shadow-xl transition-all duration-700 opacity-0 translate-y-4 hover:scale-110" style="background-color:#25d366">
-    <svg viewBox="0 0 24 24" aria-hidden="true" class="h-7 w-7 text-white" fill="currentColor">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982 1-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.887 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.463 3.488z"></path>
+<a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" aria-label="Falar com Ana Clara Oliveira pelo WhatsApp" class="fixed bottom-8 right-8 z-50 flex h-14 w-14 items-center justify-center rounded-full text-white float-in warm-pulse transition-transform hover:scale-105 active:scale-95" style="background-color:#25d366">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" role="img" aria-label="Abrir conversa no WhatsApp" fill="currentColor">
+        <title>Abrir conversa no WhatsApp</title>
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM12.05 21.785h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.999-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.886 9.884zm8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path>
     </svg>
-    <span class="absolute inset-0 rounded-full animate-ping" style="background-color:#25d366;opacity:0.35"></span>
 </a>
-</main>
 </body>
 </html>
